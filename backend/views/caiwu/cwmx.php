@@ -206,7 +206,7 @@ use yii\widgets\LinkPager;
     </td>
     <td><?php echo date("Y-m-d H:m:s",$v['fina_time'])?></td>
     <td>
-        <a href="index.php?do=finance&view=all&ac=del&fina_id=132&page=1" onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+        <a href="index.php?r=caiwu/cwmxdel&id=<?php echo $v['fina_id'];?>" onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
     </td>
 </tr>
 <?php }?>

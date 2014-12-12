@@ -1,3 +1,6 @@
+<?php
+use yii\widgets\LinkPager;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -103,21 +106,22 @@ name="sbt_search">
 <th>下单时间</th>
 <th>操作</th>
 </tr>
+    <?php foreach ($data as $k=>$v){?>
 <tr class="item">
+    
 <td><input type="checkbox" name="ckb[]"
-value="80004483" class="checkbox">80004483</td>
+value="<?php echo $v['order_id']?>" class="checkbox"><?php echo $v['order_id']?></td>
 <td class="obj_link">
-购买商品<a href="index.php?do=service&sid=13">[图兰朵]婚纱摄影重磅推出 黄金路线启动</a></td>
-<td>￥2,000.00元</td>
-<td>交易完成</td>
-<td>丸美弹力</td>
-<td>
-2013-04-09 19:22:14</td>
+购买商品<a href="index.php?do=service&sid=<?php echo $v['order_body']?>"><?php echo $v['order_name']?></a></td>
+<td><?php echo $v['price']?>元</td>
+<td><?php if($v['order_status']=="ok"){ echo "交易完成";}else{ echo "正在进行中...";}?></td>
+<td><?php echo $v['order_username']?></td>
+<td><?php echo date("Y-m-d H:m:s",$v['order_time'])?></td>
 <td><a onclick="return cdel(this);"
-href='index.php?do=model&model_id=6&view=order&w[order_id]=&w[order_username]=&w[order_status]=&page=1&w[page_size]=10&ord[0]=&ord[1]=&ac=del&order_id=80004483&page=1'
+href='index.php?r=shangdian/orderdel&id=<?php echo $v['order_id']?>'
 class="button"><span class="trash icon"></span>删除</a>
 </td>
-</tr>
+    </tr><?php }?>
 <tr>
 <td colspan="9">
 <div class="page fl_right"></div>
@@ -134,6 +138,7 @@ onclick="return pdel('frm_art_search');">
 </td>
 </tr>
 </table>
+    <div class="page"><?= LinkPager::widget(['pagination' => $pages]); ?></div>
 </div>
 </form>
 </div>

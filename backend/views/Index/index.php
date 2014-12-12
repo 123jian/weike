@@ -302,7 +302,7 @@ window.onload = function(){
                         <ul >
                         	<li><a href="index.php?r=shangdian/zpddgl" target="display_frame" r_id="m610">订单管理</a></li>
 <li><a href="index.php?r=shangdian/zpgl" target="display_frame" r_id="m611">作品管理</a></li>
-<li><a href="index.php?r=shangdian/zppz" target="display_frame" r_id="m612">作品配置</a></li>
+<li><a href="index.php?r=shangdian/zppz&id=6" target="display_frame" r_id="m612">作品配置</a></li>
  		                        </ul>
                   </dd>
                 </dl>
@@ -312,7 +312,7 @@ window.onload = function(){
                         <ul >
                         	<li><a href="index.php?r=shangdian/fwddgl" target="display_frame" r_id="m713">订单管理</a></li>
 <li><a href="index.php?r=shangdian/fwgl" target="display_frame" r_id="m714">服务管理</a></li>
-<li><a href="index.php?r=shangdian/fwpz" target="display_frame" r_id="m715">服务配置</a></li>
+<li><a href="index.php?r=shangdian/fwpz&id=7" target="display_frame" r_id="m715">服务配置</a></li>
  		                        </ul>
                   </dd>
                 </dl>

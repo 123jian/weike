@@ -17,7 +17,7 @@
 <div class="frame_content">
 <div id="append_parent"></div> 
 <div class="page_title">
-    	<h1>威客作品配置</h1>
+        <h1>威客<?php if($data['model_id']==6){ echo "作品";}else{echo "服务";}?>配置</h1>
         <div class="tool">
             <a href="index.php?do=model&model_id=6&view=config&op=config" class="here" id="tab_cont_1">基本配置</a>
             <a href="index.php?do=model&model_id=6&view=config&op=control"  id="tab_cont_2">流程配置</a>
@@ -28,19 +28,21 @@
 <div class="tabcon">
     	<div class="title"><h2>任务配置</h2></div>
         <div class="detail">
-        	<form name="frm_config_employ" action="index.php?do=model&model_id=6&view=config" method="post">
-        	<input type="hidden" name="pk[model_id]" value="6">
+        	<form name="frm_config_employ" action="index.php?r=shangdian/zppzup" method="post">
+        	<input type="hidden" name="pk[model_id]" value="<?php echo $data["model_id"]?>">
                <table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                       	 <th scope="row" width="130">模型名称：</th>
                         <td>
-                        <input type="text" value="威客作品" name="fds[model_name]" class="txt" style=" width:260px;"/>
+                        <input type="text" value="<?php echo $data['model_name']?>" name="fds[model_name]" class="txt" style=" width:260px;"/>
                         </td>
                       </tr>
                       <tr>
                         <th scope="row">是否开启：</th>
                         <td> 
-<label><input type="radio" name="fds[model_status]" checked value="1" id="model_status_0" /> 是</label>
+<label><input type="radio" name="fds[model_status]"  value="1" id="model_status_0" 
+              <?php if($data['model_status']==1){ echo 'checked';}?>
+              /> 是</label>
                             <label><input name="fds[model_status]" type="radio"  value="0"id="model_status_1" />否</label>
                         </td>
                       </tr>
@@ -87,7 +89,7 @@
  <tr>
     <th scope="row" width="200">模型描述：</th>
       <td>
-        <textarea cols=110 rows=12 name="fds[model_desc]"  style="width:75%;" id="tar_content"  class="xheditor {urlBase:'http://localhost/weike/',tools:'simple',skin:'nostyle',admin:'../../',html5Upload:false,upImgUrl:'../../index.php?do=ajax&view=upload&file_type=att'}" cols="70">&lt;strong&gt;威客作品的一般流程是：&lt;/strong&gt;&lt;br /&gt;&lt;p&gt;1、卖家在网站平台上上传作品（作品价格小于一定金额需要后台进行审核）&lt;/p&gt;&lt;p&gt;2、买家购买作品后，付款&lt;/p&gt;&lt;p&gt;4、付款后，等待卖家提供作品（有站内下载和站外交付两种）&lt;/p&gt;&lt;p&gt;5、买家确认作品后，卖家即可得到相应的作品金额&lt;/p&gt;&lt;p&gt;如果交易过程中不满意，可以申请仲裁&lt;br /&gt;&lt;/p&gt;&lt;br /&gt;</textarea>
+        <textarea cols=110 rows=12 name="fds[model_desc]"  style="width:75%;" id="tar_content"  class="xheditor {urlBase:'http://localhost/weike/',tools:'simple',skin:'nostyle',admin:'../../',html5Upload:false,upImgUrl:'../../index.php?do=ajax&view=upload&file_type=att'}" cols="70"><?php echo $data['model_desc']?></textarea>
   </td>
          </tr>
  					 

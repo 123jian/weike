@@ -1,3 +1,6 @@
+<?php
+use yii\widgets\LinkPager;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -98,90 +101,41 @@
 <th width="6%">商品状态</th>
                 <th width="17%">操作</th>
             </tr>
-
-                        <tr class="item">
-            	<td><input type="checkbox" name="ckb[]" value="14">14</td>
-                <td><a target="_blank" href="http://localhost/weike/index.php?do=service&sid=14">北京家庭装修和设计,就找渝苏皖工长俱乐部</a></td>
-                <td>￥1,000.00元</td>
-<td>猪八戒</td> 
-                <td>待审核</td>
-                <td><a href="index.php?do=model&model_id=7&view=edit&service_id=14&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-                <a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=del&service_id=14&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-<a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=pass&service_id=14&page=1"  onclick="return cdel(this,'确定上架此商品吗？');" class="button"><span class="cog icon"></span>上架</a>
-</td>
-            </tr>
-                        <tr class="item">
-            	<td><input type="checkbox" name="ckb[]" value="11">11</td>
-                <td><a target="_blank" href="http://localhost/weike/index.php?do=service&sid=11">【创意】著作权（版权）登记</a></td>
-                <td>￥100.00元</td>
-<td>猪八戒</td> 
-                <td>出售中</td>
-                <td><a href="index.php?do=model&model_id=7&view=edit&service_id=11&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-                <a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=del&service_id=11&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-<a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=nopass&service_id=11&page=1"  onclick="return cdel(this,'确定将此商品下架吗？');" class="button"><span class="lock icon"></span>下架</a>
-</td>
-            </tr>
-                        <tr class="item">
-            	<td><input type="checkbox" name="ckb[]" value="10">10</td>
-                <td><a target="_blank" href="http://localhost/weike/index.php?do=service&sid=10">【创意】企业（个人）法律咨询</a></td>
-                <td>￥1,000.00元</td>
-<td>猪八戒</td> 
-                <td>出售中</td>
-                <td><a href="index.php?do=model&model_id=7&view=edit&service_id=10&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-                <a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=del&service_id=10&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-<a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=nopass&service_id=10&page=1"  onclick="return cdel(this,'确定将此商品下架吗？');" class="button"><span class="lock icon"></span>下架</a>
-</td>
-            </tr>
-                        <tr class="item">
-            	<td><input type="checkbox" name="ckb[]" value="6">6</td>
-                <td><a target="_blank" href="http://localhost/weike/index.php?do=service&sid=6">【创意】装修</a></td>
-                <td>￥5,000.00元</td>
-<td>猪八戒</td> 
-                <td>出售中</td>
-                <td><a href="index.php?do=model&model_id=7&view=edit&service_id=6&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-                <a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=del&service_id=6&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-<a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=nopass&service_id=6&page=1"  onclick="return cdel(this,'确定将此商品下架吗？');" class="button"><span class="lock icon"></span>下架</a>
-</td>
-            </tr>
-                        <tr class="item">
-            	<td><input type="checkbox" name="ckb[]" value="4">4</td>
-                <td><a target="_blank" href="http://localhost/weike/index.php?do=service&sid=4">【创意】3d生物模型制作（包括材质贴图）</a></td>
-                <td>￥1,000.00元</td>
-<td>shangk</td> 
-                <td>出售中</td>
-                <td><a href="index.php?do=model&model_id=7&view=edit&service_id=4&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-                <a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=del&service_id=4&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-<a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=nopass&service_id=4&page=1"  onclick="return cdel(this,'确定将此商品下架吗？');" class="button"><span class="lock icon"></span>下架</a>
-</td>
-            </tr>
-                        <tr class="item">
-            	<td><input type="checkbox" name="ckb[]" value="3">3</td>
-                <td><a target="_blank" href="http://localhost/weike/index.php?do=service&sid=3">【创意】著作权（版权）登记</a></td>
-                <td>￥20.00元</td>
-<td>丸美弹力</td> 
-                <td>出售中</td>
-                <td><a href="index.php?do=model&model_id=7&view=edit&service_id=3&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-                <a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=del&service_id=3&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-<a href="index.php?do=model&model_id=7&view=list&w[service_id]=&w[service_status]=&w[title]=&w[username]=&page=1&page_size=10&ac=nopass&service_id=3&page=1"  onclick="return cdel(this,'确定将此商品下架吗？');" class="button"><span class="lock icon"></span>下架</a>
-</td>
-            </tr>
-             
-          
+<?php foreach($data as $k=>$v){?>
+<tr class="item">
+    <td><input type="checkbox" name="ckb[]" value="<?php echo $v['service_id']?>"><?php echo $v['service_id']?></td>
+    <td><a target="_blank" href="http://localhost/weike/index.php?do=service&sid=1">
+    <?php echo $v['title'];?></a></td>
+    <td>￥<?php echo $v['price']?>元 /<?php echo $v['unite_price']?></td>
+    <td><?php echo $v['username']?></td>                 
+    <td><?php if($v['service_status']==2){ echo "上架";}else if($v['service_status']==3){ echo"下架";}?></td>				
+    <td>
+    <a href="index.php?r=shangdian/zpglbj&id=<?php echo $v['service_id']?>" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+    <a href="index.phpr=shangdian/zpgldel&id=<?php echo $v['service_id']?>"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+    <?php if($v['service_status']==3){?>
+    <a href="index.php?r=shangdian/zpglsj&id=<?php echo $v['service_id']?>" class="button"><span class="lock icon"></span>上架</a>
+    <?php }else if($v['service_status']==2){?>
+    <a href="index.php?r=shangdian/zpglxj&id=<?php echo $v['service_id']?>" class="button"><span class="lock icon"></span>下架</a>
+    <?php }?>
+    </td>
+</tr>
+                    <?php }?>
           	<tr>
-            	<td colspan="8">
+            	<td colspan="9">
                     <div class="page fl_right"></div>
                     <div class="clearfix">
                   		<input type="checkbox" class="checkbox" id="checkbox" onclick="checkall();"/>
-                        <label for="checkbox">全选</label>  
+                        <label for="checkbox">全选</label>
                         <input type="hidden" name="sbt_action" class="sbt_action" />
-<button class="pill negative" type="submit" value="批量删除" onclick="return batch_act(this,'frm_list');"><span class="icon trash">&nbsp;</span>批量删除</button>                        
-                        <button class="pill negative" type="submit" value="批量上架" onclick="return batch_act(this,'frm_list');" ><span class="icon check">&nbsp;</span>批量上架</button>
-<button class="pill negative" type="submit" value="批量下架" onclick="return batch_act(this,'frm_list');"><span class="icon lock">&nbsp;</span>批量下架</button>
+<button class="pill negative" type="button" value="批量删除" onclick="del();"><span class="icon trash">&nbsp;</span>批量删除</button>                        
+                        <button class="pill negative" type="button" value="批量上架" onclick="shangjia();" ><span class="icon check">&nbsp;</span>批量上架</button>
+<button class="pill negative" type="button" value="批量下架" onclick="xiajia();"><span class="icon lock">&nbsp;</span>批量下架</button>
 </div>
                  </td>
         	</tr>
  </tbody>
         </table>
+<div class="page"><?= LinkPager::widget(['pagination' => $pages]); ?></div>
 </div>
      </form>   
     </div> 
@@ -197,27 +151,80 @@ src="../../resource/js/artdialog/jquery.artDialog.js?skin=default"></script>
 src="../../resource/js/artdialog/artDialog.iframeTools.source.js"></script>
 <script type="text/javascript" src="../../lang/cn/script/lang.js"></script>
 <script type="text/javascript">
-In.add('form_and_validation', {
-path : "../../resource/js/system/form_and_validation.js",
-type : 'js'
-});
-In.add('xheditor', {
-path : "../../resource/js/xheditor/xheditor.js",
-type : 'js'
-});
-In.add('mousewheel', {
-path : "tpl/js/jquery.mousewheel.min.js",
-type : 'js'
-});
-//In.add('styleswitch',{path:"tpl/js/styleswitch.js",type:'js'});
-In.add('table', {
-path : "tpl/js/table.js",
-type : 'js'
-});
-In.add('calendar', {
-path : "../../resource/js/system/script_calendar.js"
-});
-In('form_and_validation', 'xheditor', 'mousewheel', 'table', 'calendar');
+//全选
+    function checkall(){
+        //alert(111);
+        var pro=document.getElementsByName('ckb[]');
+        for (var i=0;i<pro.length ;i++ )
+        {
+            if(pro[i].checked===true)
+            {
+                    pro[i].checked=false;
+            }else{
+                    pro[i].checked=true;
+            }
+        }
+    }
+    //上架
+    function shangjia(){
+        //接收id
+        var id = "";
+        var ckb = document.getElementsByName('ckb[]');
+
+        for (var i=0;i<ckb.length ;i++ ){
+                if (ckb[i].checked==true){
+                        id += ckb[i].value+",";
+                }
+        }
+        //验证是否选中删除记录
+        if (id==""){
+                alert("请选择要删除的数据");
+                return false;
+        }
+        id = id.substring(0,id.length-1,1);
+        //alert(id);return false;
+        location.href = "index.php?r=shangdian/piliang&id="+id+"&act=2";
+    }
+    //下架
+    function xiajia(){
+        //接收id
+        var id = "";
+        var ckb = document.getElementsByName('ckb[]');
+
+        for (var i=0;i<ckb.length ;i++ ){
+                if (ckb[i].checked==true){
+                        id += ckb[i].value+",";
+                }
+        }
+        //验证是否选中删除记录
+        if (id==""){
+                alert("请选择要删除的数据");
+                return false;
+        }
+        id = id.substring(0,id.length-1,1);
+        //alert(id);return false;
+        location.href = "index.php?r=shangdian/piliang&id="+id+"&act=3";
+    }
+    //删除
+    function del(){
+        //接收id
+        var id = "";
+        var ckb = document.getElementsByName('ckb[]');
+
+        for (var i=0;i<ckb.length ;i++ ){
+                if (ckb[i].checked==true){
+                        id += ckb[i].value+",";
+                }
+        }
+        //验证是否选中删除记录
+        if (id==""){
+                alert("请选择要删除的数据");
+                return false;
+        }
+        id = id.substring(0,id.length-1,1);
+        //alert(id);return false;
+        location.href = "index.php?r=shangdian/piliang&id="+id+"&act=1";
+    }
 </script>
 
 <script type="text/javascript">

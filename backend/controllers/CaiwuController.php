@@ -26,11 +26,22 @@ class CaiwuController extends Controller
             $this->layout='@app/views/layouts/admin.php';
             $data = KekeWitkeyFinance::find();
             $pages = new Pagination(['totalCount' =>$data->count(), 'pageSize' => '10']);
-            $model = $data->offset($pages->offset)->limit($pages->limit)->all();
+            $model = $data->offset($pages->offset)->limit($pages->limit)->all();//'order by fina_id desc'
             //print_r($model);die;
             return $this->render('cwmx',['data'=>$model,'pages' => $pages]);
             //return $this->renderPartial('cwmx');
 	}
+        //财务明细删除
+        public function actionCwmxdel(){
+            $a=  KekeWitkeyFinance::findOne($_GET['id'])->delete();
+            if($a){
+                echo "<script>alert('删除成功');location.href='./index.php?r=caiwu/cwmx'</script>";
+                    //$this->redirect("./index.php?r=userguanli/yhgl");
+            }else{
+                echo "<script>alert('删除失败');location.href='./index.php?r=caiwu/cwmx'</script>";
+                    //$this->redirect("./index.php?r=userguanli/yhgl");
+            }
+        }
 
 /*		   财务分析
 	*/
