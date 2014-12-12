@@ -121,8 +121,19 @@ class RenwuController extends Controller{
         
         //计件任务管理
         public function actionJijianrwgl(){
-		return $this->renderPartial('jijianrwgl');
+             $model=new query();
+                $model->from(['keke_witkey_model','keke_witkey_task'])->where(
+                        "keke_witkey_task.model_id=keke_witkey_model.model_id and keke_witkey_task.model_id=3 order by task_id desc")->all();
+               
+                $pages = new Pagination(['totalCount'=>$model->count(),'pageSize'=>5]);
+                $data=$model->offset($pages->offset)->limit($pages->limit)->all();
+               
+		return $this->renderPartial('jijianrwgl',['arr'=>$data,'pages'=>$pages]);
 	}
+        
+        
+        
+        
         //计件任务配置
         public function actionJijianrwpz(){
 		return $this->renderPartial('jijianrwpz');
