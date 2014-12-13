@@ -26,7 +26,7 @@ class RenwuController extends Controller{
                 return $this->renderPartial('danrenrwgl',['arr'=>$data,'pages'=>$pages]);
 	}
         public function actionDrenrwgl(){
-            print_r($_GET);die;
+           // print_r($_GET);die;
             $where=" keke_witkey_task.model_id=keke_witkey_model.model_id and keke_witkey_task.model_id=1";
          
             if($_GET['task_id']){
