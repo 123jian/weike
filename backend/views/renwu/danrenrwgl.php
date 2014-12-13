@@ -42,9 +42,9 @@ use yii\widgets\LinkPager;
 <tbody>
                         <tr>
                             <th>任务编号</th>
-                            <td><input type="text" value="" name="w[task_id]" class="txt"/></td>
+                            <td><input type="text" value="" name="task_id" id="task_id" class="txt"/></td>
                             <th>任务标题</th>
-                            <td><input type="text" value="" name="w[task_title]" class="txt"/> 支持模糊查询</td>
+                            <td><input type="text" value="" name="task_title" id="task_title" class="txt"/> 支持模糊查询</td>
                              <th></th><td>
                              	<button class="pill" type="submit" value="搜索" name="sbt_search">
                             		<span class="magnifier icon">&nbsp;</span>搜索</button></td>
@@ -54,7 +54,7 @@ use yii\widgets\LinkPager;
                         <tr>
                             <th>请选择任务状态</th>
                             <td>
-                            	<select class="ps vm" name="w[task_status]" id="catid" onchange="statusJump(this.value)">
+                            	<select class="ps vm" name="task_status" id="catid" onchange="statusJump(this.value)">
                             		<option value=""  selected="selected" >全部</option>
                             	    <option value="0"  >未付款</option>
     <option value="1"  >待审核</option>
@@ -77,15 +77,15 @@ use yii\widgets\LinkPager;
 
 <select name="ord[]" id="ord1">
                                 <option value="task_id"  selected="selected">默认排序</option>
-                                <option value="start_time" id="" >发布时间</option>
+                                <option value="start_time" id="tim" >发布时间</option>
                                 </select>
-                                <select name="ord[]" onchange="orderJump(this.value)">
+                                <select name="ord[]" onchange="orderJump(this.value)" id="ord2">
                                 <option selected="selected"  value="desc">递减</option>
                                 <option  value="asc">递增</option>
                                 </select>
 </td>
                             <th>显示结果</th>
-                            <td><select name="page_size" onchange="pageJump(this.value)">
+                            <td><select name="page_size" id="pag" onchange="pageJump(this.value)">
 <option value="10" selected="selected">每页显示10</option>
 <option value="20" >每页显示20</option>
 <option value="30" >每页显示30</option>
@@ -383,15 +383,50 @@ return false;
 </body>
 </html>
 <script type="text/javascript">
-var url = 'index.php?r=renwu/danrenrwgl';
+var task_id=document.getElementById('task_id').value;
+
+var task_title=document.getElementById('task_title').value;
+var task_status=document.getElementById('task_status').value;
+var ord1=document.getElementById('ord1').value;
+var ord2=document.getElementById('ord2').value;
+var pag=document.getElementById('pag').value;
+
+
+var url = 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&ord1='+ord1+'&ord2='+ord2+'&pag='+pag;
+
 function statusJump(task_status){
-window.location.href = url+'&w[task_status]='+task_status;
+var task_id=document.getElementById('task_id').value;
+
+var task_title=document.getElementById('task_title').value;
+//var task_status=document.getElementById('task_status').value;
+var ord1=document.getElementById('ord1').value;
+var ord2=document.getElementById('ord2').value;
+var pag=document.getElementById('pag').value;
+window.location.href = 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&ord1='+ord1+'&ord2='+ord2+'&pag='+pag;
 }
 function orderJump(value){
-var ord1 = $("#ord1").children("option:selected").val();//selected的值
-window.location.href= url+'&ord[0]='+ord1+'&ord[1]='+value;
+    
+var task_id=document.getElementById('task_id').value;
+
+var task_title=document.getElementById('task_title').value;
+var task_status=document.getElementById('task_status').value;
+
+
+var pag=document.getElementById('pag').value;
+
+//var ord1 = $("#ord1").children("option:selected").val();//selected的值
+var ord1=document.getElementById('ord1').value;
+window.location.href= 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&pag='+pag;+'&ord1='+ord1+'&ord2='+value;
 }
 function pageJump(value){
-window.location.href = url+'&page_size='+value;
+var task_id=document.getElementById('task_id').value;
+
+var task_title=document.getElementById('task_title').value;
+var task_status=document.getElementById('task_status').value;
+var ord1=document.getElementById('ord1').value;
+var ord2=document.getElementById('ord2').value;
+
+
+window.location.href = 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&ord1='+ord1+'&ord2='+ord2+'&pag='+val;
 }
 </script>

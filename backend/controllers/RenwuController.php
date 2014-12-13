@@ -14,7 +14,21 @@ class RenwuController extends Controller{
         //单人任务管理
     public $enableCsrfValidation = false;
         public function actionDanrenrwgl(){
-                //print_r($_GET);
+                $model=new query();
+                $model->from(['keke_witkey_model','keke_witkey_task'])->where(
+                        "keke_witkey_task.model_id=keke_witkey_model.model_id and keke_witkey_task.model_id=1 order by task_id desc")->all();
+               
+                $pages = new Pagination(['totalCount'=>$model->count(),'pageSize'=>5]);
+                $data=$model->offset($pages->offset)->limit($pages->limit)->all();
+                
+                
+                
+                return $this->renderPartial('danrenrwgl',['arr'=>$data,'pages'=>$pages]);
+	}
+        public function actionDrenrwgl(){
+                print_r($_GET);
+                die;
+                
                 $model=new query();
                 $model->from(['keke_witkey_model','keke_witkey_task'])->where(
                         "keke_witkey_task.model_id=keke_witkey_model.model_id and keke_witkey_task.model_id=1 order by task_id desc")->all();
