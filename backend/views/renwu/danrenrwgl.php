@@ -37,8 +37,7 @@ use yii\widgets\LinkPager;
     	<div class="title"><h2>搜索</h2></div>
         <div class="detail" id="detail">
            
-    <form action="index.php?do=model&model_id=1&view=list" method="post">
- <input type="hidden" value="1" name="page">
+    <form action="index.php?r=renwu/danrenrwgl" method="post">
 <table cellspacing="0" cellpadding="0">
 <tbody>
                         <tr>
@@ -78,7 +77,7 @@ use yii\widgets\LinkPager;
 
 <select name="ord[]" id="ord1">
                                 <option value="task_id"  selected="selected">默认排序</option>
-                                <option value="start_time" >发布时间</option>
+                                <option value="start_time" id="" >发布时间</option>
                                 </select>
                                 <select name="ord[]" onchange="orderJump(this.value)">
                                 <option selected="selected"  value="desc">递减</option>
