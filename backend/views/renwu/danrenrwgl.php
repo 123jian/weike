@@ -36,7 +36,6 @@ use yii\widgets\LinkPager;
         <div class="box search p_relative">
     	<div class="title"><h2>搜索</h2></div>
         <div class="detail" id="detail">
-           
     <form action="index.php?r=renwu/danrenrwgl" method="post">
 <table cellspacing="0" cellpadding="0">
 <tbody>
@@ -86,9 +85,9 @@ use yii\widgets\LinkPager;
 </td>
                             <th>显示结果</th>
                             <td><select name="page_size" id="pag" onchange="pageJump(this.value)">
-<option value="10" selected="selected">每页显示10</option>
-<option value="20" >每页显示20</option>
-<option value="30" >每页显示30</option>
+<option value="5" selected="selected">每页显示5</option>
+<option value="10" >每页显示10</option>
+<option value="15">每页显示15</option>
 </select>
                               
                         </tr>
@@ -409,24 +408,30 @@ function orderJump(value){
 var task_id=document.getElementById('task_id').value;
 
 var task_title=document.getElementById('task_title').value;
-var task_status=document.getElementById('task_status').value;
+var task_status=document.getElementById('catid').value;
 
 
 var pag=document.getElementById('pag').value;
 
 //var ord1 = $("#ord1").children("option:selected").val();//selected的值
 var ord1=document.getElementById('ord1').value;
-window.location.href= 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&pag='+pag;+'&ord1='+ord1+'&ord2='+value;
+//alert(ord1)
+window.location.href= 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&pag='+pag+'&ord1='+ord1+'&ord2='+value;
 }
 function pageJump(value){
+    
 var task_id=document.getElementById('task_id').value;
 
 var task_title=document.getElementById('task_title').value;
-var task_status=document.getElementById('task_status').value;
+
+var task_status=document.getElementById('catid').value;
+
 var ord1=document.getElementById('ord1').value;
+
 var ord2=document.getElementById('ord2').value;
 
 
-window.location.href = 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&ord1='+ord1+'&ord2='+ord2+'&pag='+val;
+window.location.href= 'index.php?r=renwu/drenrwgl&task_id='+task_id+'&task_title='+task_title+'&task_status='+task_status+'&ord1='+ord1+'&ord2='+ord2+'&pag='+value;
+
 }
 </script>

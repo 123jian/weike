@@ -26,19 +26,31 @@ class RenwuController extends Controller{
                 return $this->renderPartial('danrenrwgl',['arr'=>$data,'pages'=>$pages]);
 	}
         public function actionDrenrwgl(){
-                print_r($_GET);
-                die;
+            print_r($_GET);die;
+            $where=" keke_witkey_task.model_id=keke_witkey_model.model_id and keke_witkey_task.model_id=1";
+         
+            if($_GET['task_id']){
+                $where.=" and task_id=".$_GET['task_id'];
+            }
+            if($_GET['task_title']){
+                $where.=" and task_title like '".$_GET['task_title']."'";
+            }
+            if($_GET['task_status']){
+                $where.=" and task_status=".$_GET['task_status'];
+            }
+            
+            $where.=" order by ".$_GET['ord1']." ".$_GET['ord2']."";
+            
                 
                 $model=new query();
-                $model->from(['keke_witkey_model','keke_witkey_task'])->where(
-                        "keke_witkey_task.model_id=keke_witkey_model.model_id and keke_witkey_task.model_id=1 order by task_id desc")->all();
+                $model->from(['keke_witkey_model','keke_witkey_task'])->where($where)->all();
                
-                $pages = new Pagination(['totalCount'=>$model->count(),'pageSize'=>5]);
+                $pages = new Pagination(['totalCount'=>$model->count(),'pageSize'=>$_GET['pag']]);
                 $data=$model->offset($pages->offset)->limit($pages->limit)->all();
                 
                 
                 
-                return $this->renderPartial('danrenrwgl',['arr'=>$data,'pages'=>$pages]);
+                return $this->renderPartial('danrenrwgl',['arr'=>$data,'pages'=>$pages,'get'=>$_GET]);
 	}
             //单人任务详细
         public function actionDanrenrwview(){
