@@ -1,3 +1,6 @@
+<?php
+use yii\widgets\LinkPager;
+?>
 <script type="text/javascript" src="tpl/default/js/jq.js"></script>
 <script>
 function getUrlParam(name)
@@ -42,23 +45,10 @@ $("#"+key).attr("class","selected")
                             <dt class="grid_2 omega">
                                 任务分类                            </dt>
                             <dd class="grid_21">
-                                <a href="index.php?do=task_list&path="    class='selected' >全部 </a>
-                                <a href="index.php?do=task_list&path=A441" >品牌设计</a>
-                                <a href="index.php?do=task_list&path=A2" >网站开发</a>
-                                <a href="index.php?do=task_list&path=A201" >创意祝福</a>
-                                <a href="index.php?do=task_list&path=A249" >网游服务</a>
-                                <a href="index.php?do=task_list&path=A3" >文案写作</a>
-                                <a href="index.php?do=task_list&path=A335" >建筑/装修</a>
-                                <a href="index.php?do=task_list&path=A211" >头脑风暴</a>
-                                <a href="index.php?do=task_list&path=A350" >照片美化/编辑</a>
-                                <a href="index.php?do=task_list&path=A234" >法律服务</a>
-                                <a href="index.php?do=task_list&path=A160" >起名取名</a>
-                                <a href="index.php?do=task_list&path=A357" >影视/配音/歌词</a>
-                                <a href="index.php?do=task_list&path=A192" >生活服务</a>
-                                <a href="index.php?do=task_list&path=A218" >移动应用</a>
-                                <a href="index.php?do=task_list&path=A240" >招聘找人</a>
-                                <a href="index.php?do=task_list&path=A121" >软件开发</a>
-                                 
+                                <a href="index.php?r=tasklist/index&fl=&ms="    class='selected' >全部 </a>
+								<?php foreach($fenlei as $f=>$l){?>
+                                <a href="index.php?r=tasklist/index&fl=<?php echo $l['indus_id']?>&ms=<?php echo @$can['ms']?>&min=<?php echo @$can['min']?>&max=<?php echo @$can['max']?>" ><?php echo $l['indus_name']?></a>
+								<?php }?>
                             </dd>
                         </dl>
                         
@@ -68,40 +58,12 @@ $("#"+key).attr("class","selected")
                                 任务模式                            </dt>
                             <dd class="grid_21">
                                 <span id="single_choice_span" >
-<a href="index.php?do=task_list&path="   class='selected' >全部 </a>
-
-  
-<a href="index.php?do=task_list&path=B1"   >单人悬赏 </a>
-  
-<a href="index.php?do=task_list&path=B2"   >多人悬赏 </a>
-  
-<a href="index.php?do=task_list&path=B3"   >计件悬赏 </a>
-  
-<a href="index.php?do=task_list&path=B4"   >普通招标 </a>
-  
-<a href="index.php?do=task_list&path=B5"   >订金招标 </a>
+<a href="index.php?r=tasklist/index&fl=&ms="   class='selected' >全部 </a>
+<?php foreach($moshi as $m=>$s){?>
+<a href="index.php?r=tasklist/index&fl=<?php echo @$can['fl']?>&ms=<?php echo $s['model_id']?>&min=<?php echo @$can['min']?>&max=<?php echo @$can['max']?>"><?php echo $s['model_name']?> </a>
+<?php }?>
 </span>
 
-                                <!--搜索模式切换--><span id="much_choice_span"   style="display:none" >
-                                <a href="javascript:model_all();" id="model_all">全部</a> 
-                                                              		<a href="javascript:void(0);"    id="model_a_1" onclick="select_model_a('1')">
-<input class="model_class"   type="checkbox" id="test_1" ext="1" > 单人悬赏</a>
-                              		<a href="javascript:void(0);"    id="model_a_2" onclick="select_model_a('2')">
-<input class="model_class"   type="checkbox" id="test_2" ext="2" > 多人悬赏</a>
-                              		<a href="javascript:void(0);"    id="model_a_3" onclick="select_model_a('3')">
-<input class="model_class"   type="checkbox" id="test_3" ext="3" > 计件悬赏</a>
-                              		<a href="javascript:void(0);"    id="model_a_4" onclick="select_model_a('4')">
-<input class="model_class"   type="checkbox" id="test_4" ext="4" > 普通招标</a>
-                              		<a href="javascript:void(0);"    id="model_a_5" onclick="select_model_a('5')">
-<input class="model_class"   type="checkbox" id="test_5" ext="5" > 订金招标</a>
-
-</span>
-<a class="button" id="show_much_choice" onclick="much_choice();" >
-<span class="icon check"></span>多选模式</a>
-                                <span id="much_choice_sreach"   style="display:none" >
-                                	<a class="button" onclick="model_search();"><span class="magnifier icon"></span>搜  索</a>
-<a class="button" onclick="model_reset();"><span class="icon reload"></span>重 置</a>
-</span>
                                 <!--end -->
 </dd>
                           </dl>
@@ -112,18 +74,17 @@ $("#"+key).attr("class","selected")
                                     <dd class="grid_21">
                                         <span id="general_search" >
                                         	<a href="index.php?do=task_list&path="   class="selected" >全部 </a>
+ <a href="index.php?r=tasklist/index&fl=<?php echo @$can['fl']?>&ms=<?php echo @$can['ms']?>&max=100">100元以下  </a>
  
-<a href="index.php?do=task_list&path=C1"  >100元以下 </a>
+<a href="index.php?r=tasklist/index&fl=<?php echo @$can['fl']?>&ms=<?php echo @$can['ms']?>&min=100&max=500">100-500 </a>
  
-<a href="index.php?do=task_list&path=C2"  >100-500 </a>
+<a href="index.php?r=tasklist/index&fl=<?php echo @$can['fl']?>&ms=<?php echo @$can['ms']?>&min=500&max=1000"  >500-1000 </a>
  
-<a href="index.php?do=task_list&path=C3"  >500-1000 </a>
+<a href="index.php?r=tasklist/index&fl=<?php echo @$can['fl']?>&ms=<?php echo @$can['ms']?>&min=1000&max=5000"  >1000-5000 </a>
  
-<a href="index.php?do=task_list&path=C4"  >1000-5000 </a>
+<a href="index.php?r=tasklist/index&fl=<?php echo @$can['fl']?>&ms=<?php echo @$can['ms']?>&min=5000&max=20000"  >5000-20000 </a>
  
-<a href="index.php?do=task_list&path=C5"  >5000-20000 </a>
- 
-<a href="index.php?do=task_list&path=C6"  >2万以上 </a>
+<a href="index.php?r=tasklist/index&fl=<?php echo @$can['fl']?>&ms=<?php echo @$can['ms']?>&max=20000"  >2万以上 </a>
 
 <a class="button" style="" onclick="custom_search_cash('task_list_search_cash')">
                                         	<span class="icon cog"></span>自定义</a></span>
@@ -255,9 +216,9 @@ $("#"+key).attr("class","selected")
 </div> 
 <!--end 已选条件--> 
                      </div>
- <!--工具栏-->
+ <!--工具栏
                             <div class="operate po_ab">
-                                <a href="javascript:show_hide()" id="tool_show" title="展开"><span class="icon16 sq-plus"></span></a>
+                                <a href="javascript:show_hide()" id="tool_show" title="展开"><span class="icon16 sq-plus"></span></a>-->
                    				<a href="javascript:show_hide()" id="tool_hide" style="display:none" title="收起"><span class="icon16 sq-minus"></span></a>
                             </div>
                 <!--end 工具栏-->
@@ -343,582 +304,7 @@ $("#"+key).attr("class","selected")
                                                             状态                                                        </li>
                                                     </ul>
                                                 </dd>
-                                                
-                                                  
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥1000 ~ 2000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=63" title="网站取名网站取名" class="font14 task_title">网站取名网站取名</a>
-                                                            <!-- <span class="block m_h">[#63]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">订金招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        7个月15天1小时28分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=63&pub_mode=onekey&model_id=5" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','dtender','8','63','网站取名网站取名','63')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=63" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=0&title=网站取名网站取名" id="share0" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥20000 ~ 30000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=59" title="城市形象策划宣传推广方案" class="font14 task_title">城市形象策划宣传推广方案</a>
-                                                            <!-- <span class="block m_h">[#59]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">普通招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        5个月5天1小时25分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=59&pub_mode=onekey&model_id=4" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','tender','7','59','城市形象策划宣传推广方案','59')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=59" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=1&title=城市形象策划宣传推广方案" id="share1" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          	￥100.00元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=57" title="进驻商场&企业生活馆餐饮店的竞标报告" class="font14 task_title">进驻商场&企业生活馆餐饮店的竞标报告</a>
-                                                            <!-- <span class="block m_h">[#57]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">计件悬赏<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">4 / 3</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        已结束</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=57&pub_mode=onekey&model_id=3" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','preward','6','57','进驻商场&企业生活馆餐饮店的竞标报告','57')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=57" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=2&title=进驻商场&企业生活馆餐饮店的竞标报告" id="share2" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥30000 ~ 50000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=56" title="求广州，珠三角内正规公司的代开实习证明" class="font14 task_title">求广州，珠三角内正规公司的代开实习证明</a>
-                                                            <!-- <span class="block m_h">[#56]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">普通招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        5个月5天1小时24分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=56&pub_mode=onekey&model_id=4" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','tender','7','56','求广州，珠三角内正规公司的代开实习证明','56')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=56" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=3&title=求广州，珠三角内正规公司的代开实习证明" id="share3" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      		app_top
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥30000 ~ 50000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=53" title="情人节不能一起过，求各位帮忙发浪漫示爱短信" class="font14 task_title">情人节不能一起过，求各位帮忙发浪漫示爱短信</a>
-                                                            <!-- <span class="block m_h">[#53]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">普通招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        5个月5天1小时22分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=53&pub_mode=onekey&model_id=4" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','tender','7','53','情人节不能一起过，求各位帮忙发浪漫示爱短信','53')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=53" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=4&title=情人节不能一起过，求各位帮忙发浪漫示爱短信" id="share4" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥1000 ~ 2000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=51" title="三维渲染----" class="font14 task_title">三维渲染----</a>
-                                                            <!-- <span class="block m_h">[#51]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">订金招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        7个月15天1小时21分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=51&pub_mode=onekey&model_id=5" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','dtender','8','51','三维渲染----','51')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=51" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=5&title=三维渲染----" id="share5" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      		app_urgent
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥50000 ~ 60000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=47" title="室内107平米三房二厅二卫新房设计" class="font14 task_title">室内107平米三房二厅二卫新房设计</a>
-                                                            <!-- <span class="block m_h">[#47]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">普通招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        5个月5天1小时19分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=47&pub_mode=onekey&model_id=4" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','tender','7','47','室内107平米三房二厅二卫新房设计','47')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=47" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=6&title=室内107平米三房二厅二卫新房设计" id="share6" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          	￥90.00元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=46" title="轻松下载每个可得钱" class="font14 task_title">轻松下载每个可得钱</a>
-                                                            <!-- <span class="block m_h">[#46]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">计件悬赏<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">4 / 3</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        已结束</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=46&pub_mode=onekey&model_id=3" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','preward','6','46','轻松下载每个可得钱','46')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=46" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=7&title=轻松下载每个可得钱" id="share7" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      		app_top
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥50000 ~ 60000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=45" title="[208079]MBA论文修改（附文稿和修改意见）" class="font14 task_title">[208079]MBA论文修改（附文稿和修改意见）</a>
-                                                            <!-- <span class="block m_h">[#45]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">普通招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        5个月5天1小时17分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=45&pub_mode=onekey&model_id=4" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','tender','7','45','[208079]MBA论文修改（附文稿和修改意见）','45')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=45" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=8&title=[208079]MBA论文修改（附文稿和修改意见）" id="share8" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          	￥300.00元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=43" title="希望女友收到来自各地的祝福短信" class="font14 task_title">希望女友收到来自各地的祝福短信</a>
-                                                            <!-- <span class="block m_h">[#43]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">计件悬赏<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">1 / 3</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        已结束</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=43&pub_mode=onekey&model_id=3" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','preward','6','43','希望女友收到来自各地的祝福短信','43')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=43" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=9&title=希望女友收到来自各地的祝福短信" id="share9" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥100 ~ 1000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=42" title="服务器系统" class="font14 task_title">服务器系统</a>
-                                                            <!-- <span class="block m_h">[#42]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">订金招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        7个月15天1小时16分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=42&pub_mode=onekey&model_id=5" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','dtender','8','42','服务器系统','42')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=42" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=10&title=服务器系统" id="share10" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥30000 ~ 50000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=41" title="[207242]中国长江三峡集团移民局网站界面设计" class="font14 task_title">[207242]中国长江三峡集团移民局网站界面设计</a>
-                                                            <!-- <span class="block m_h">[#41]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">普通招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        5个月5天1小时15分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=41&pub_mode=onekey&model_id=4" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','tender','7','41','[207242]中国长江三峡集团移民局网站界面设计','41')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=41" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=11&title=[207242]中国长江三峡集团移民局网站界面设计" id="share11" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥100 ~ 1000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=38" title="评测报告评测报告评测报告" class="font14 task_title">评测报告评测报告评测报告</a>
-                                                            <!-- <span class="block m_h">[#38]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">订金招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        4个月15天1小时12分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=38&pub_mode=onekey&model_id=5" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','dtender','8','38','评测报告评测报告评测报告','38')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=38" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=12&title=评测报告评测报告评测报告" id="share12" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥100 ~ 1000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=36" title="征集创新征集创新征集创新" class="font14 task_title">征集创新征集创新征集创新</a>
-                                                            <!-- <span class="block m_h">[#36]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">订金招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        4个月7天1小时10分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=36&pub_mode=onekey&model_id=5" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','dtender','8','36','征集创新征集创新征集创新','36')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=36" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=13&title=征集创新征集创新征集创新" id="share13" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          	￥150.00元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=35" title="淘宝网店推广" class="font14 task_title">淘宝网店推广</a>
-                                                            <!-- <span class="block m_h">[#35]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">计件悬赏<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">1 / 1</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        已结束</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=35&pub_mode=onekey&model_id=3" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','preward','6','35','淘宝网店推广','35')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=35" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=14&title=淘宝网店推广" id="share14" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          	￥120.00元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=34" title="淘宝网店推广 10元1稿 简单快捷" class="font14 task_title">淘宝网店推广 10元1稿 简单快捷</a>
-                                                            <!-- <span class="block m_h">[#34]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">计件悬赏<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">3 / 1</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        已结束</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=34&pub_mode=onekey&model_id=3" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','preward','6','34','淘宝网店推广 10元1稿 简单快捷','34')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=34" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=15&title=淘宝网店推广 10元1稿 简单快捷" id="share15" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
+                                                <?php foreach($list as $k=>$v){?>
                                                 <dd class="po_re clearfix 
    app_recmd
       "
@@ -926,125 +312,16 @@ $("#"+key).attr("class","selected")
                                                     <ul>
                                                     	<li class="w2 cf60 bounty font14b">
                                                           
- 	￥100 ~ 1000元                                                         </li>
+ 	￥<?php echo $v['real_cash']?> ~ <?php echo $v['task_cash']?>元                                                         </li>
                                                         <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=29" title="交友网站制作" class="font14 task_title">交友网站制作</a>
-                                                            <!-- <span class="block m_h">[#29]</span> -->
-                                                                                                                                                                               	      <img src="http://127.0.0.1/weike/resource/img/ico/tj.png" alt="推荐" title="推荐">                                                             
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">订金招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        4个月15天47分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=29&pub_mode=onekey&model_id=5" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','dtender','3','29','交友网站制作','29')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=29" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=16&title=交友网站制作" id="share16" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          	￥80.00元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=28" title="彩票站宣传单设计" class="font14 task_title">彩票站宣传单设计</a>
-                                                            <!-- <span class="block m_h">[#28]</span> -->
-                                                                                                                                                                               	                                                                   
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">计件悬赏<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">3 / 1</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        已结束</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=28&pub_mode=onekey&model_id=3" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','preward','2','28','彩票站宣传单设计','28')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=28" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=17&title=彩票站宣传单设计" id="share17" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-   app_recmd
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥1 ~ 1000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=27" title="棋牌类伪原创，能写的来" class="font14 task_title">棋牌类伪原创，能写的来</a>
-                                                            <!-- <span class="block m_h">[#27]</span> -->
-                                                                                                                                                                               	      <img src="http://127.0.0.1/weike/resource/img/ico/tj.png" alt="推荐" title="推荐">                                                             
-    </li>
-                                                   
-                                                        
-                                                        <li class="mode"> 
-                                                            <span class="block">普通招标<br/></span>
-                                                        </li>
-                                                        <li class="count">
-                                                            <span title="关注 / 交稿">0 / 0</span>
-                                                        </li>
-                                                        <li class="status w2">
-                                                        4个月15天45分后投稿截止</span>
-                                                    </li>
-                                                    </ul>
-                                                    <div class="clear">
-                                                    </div>
-                                                    <!-- <div class="operate">
-                                                  
-<a href="index.php?do=release&t_id=27&pub_mode=onekey&model_id=4" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','tender','2','27','棋牌类伪原创，能写的来','27')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=27" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=18&title=棋牌类伪原创，能写的来" id="share18" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                              
-                                                <dd class="po_re clearfix 
-   app_recmd
-      "
->
-                                                    <ul>
-                                                    	<li class="w2 cf60 bounty font14b">
-                                                          
- 	￥100 ~ 1000元                                                         </li>
-                                                        <li class="w4 info">
-                                                            <a href="index.php?do=task&task_id=26" title="化妆工作室取名" class="font14 task_title">化妆工作室取名</a>
+                                                            <a href="index.php?do=task&task_id=26" title="化妆工作室取名" class="font14 task_title"><?php echo $v['task_title']?></a>
                                                             <!-- <span class="block m_h">[#26]</span> -->
                                                                                                                                                                                	      <img src="http://127.0.0.1/weike/resource/img/ico/tj.png" alt="推荐" title="推荐">                                                             
     </li>
                                                    
                                                         
                                                         <li class="mode"> 
-                                                            <span class="block">订金招标<br/></span>
+                                                            <span class="block"><?php echo $v['model_name']?><br/></span>
                                                         </li>
                                                         <li class="count">
                                                             <span title="关注 / 交稿">0 / 0</span>
@@ -1055,31 +332,14 @@ $("#"+key).attr("class","selected")
                                                     </ul>
                                                     <div class="clear">
                                                     </div>
-                                                    <!-- <div class="operate">
                                                   
-<a href="index.php?do=release&t_id=26&pub_mode=onekey&model_id=5" title="一键发布"><div class="icon16 hand-2">一键发布</div></a>
-                                                    <a href="javascript:favor('task_id','task','dtender','2','26','化妆工作室取名','26')" title="收藏"><div class="icon16 star-fav-empty">收藏</div></a>
-                                                    <a href="index.php?do=task&task_id=26" target="_blank" title="新窗口打开"><div class="icon16 expand">新窗口打开</div></a>
-                                                    <a class="" href="index.php?do=ajax&view=share&oid=19&title=化妆工作室取名" id="share19" onclick="return false;" onmouseover="share(this);return false;" title="分享"><div class="icon16 share">分享</div></a>
-                                                
-                                                </div> -->
-                                            </dd>
-                                             
+                                                </dd><?php }?>
                                             </dl>
                                         </div>
-                                        <!--end 列表主内容--><!--右下角的返回顶部--
-                                        <div class="operate mt_10 fl_r">
-                                            <a href="index.php" class="" title="返回首页"><div class="icon16 home">返回首页</div></a>
-                                            <a href="#pageTop" class="" title="返回顶部"><div class="icon16 arrow-top">返回顶部</div></a>
-                                        </div>
-                                        <!--end右下角的返回顶部-->
+                                        
                                     </div>
                                     <!--page 翻页 start-->
-                                    <div class="page">
-                                        <p class="clearfix">
-                                            <span class="stats">统计 28 条 </span>
-                                            <a class="selected">1</a><a href="index.php?do=task_list&path=&min=&max=&model_ids=&page_size=20&province=&city=&area=&page=2">2</a> <a href="index.php?do=task_list&path=&min=&max=&model_ids=&page_size=20&province=&city=&area=&page=2">下一页>></a><span class="fl_l"> 1 / 2页</span>                                         </p>
-                                    </div>
+                                    <div class="page"><?= LinkPager::widget(['pagination' => $pages]); ?>                                    </div>
                                     <!--page 翻页 end-->
                                     <div class="clear">
                                     </div>
