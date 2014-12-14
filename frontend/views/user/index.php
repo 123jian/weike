@@ -91,7 +91,7 @@ $("#"+key).attr("class","selected")
 <!--安全设置-->
 
 <div class="t_c pb_20">
-<a class="button btn_width mr_5 mt_5" href="index.php?do=user&amp;view=setting&amp;op=safe">修改密码</a>
+<a class="button btn_width mr_5 mt_5" href="index.php?r=user/safe&stut=setting&view=safe">修改密码</a>
 <a class="button btn_width mt_5" href="index.php?do=user&amp;view=setting&amp;op=safe&amp;opp=sec_code">修改安全码</a>	
 
 <div class="mt_5">											
