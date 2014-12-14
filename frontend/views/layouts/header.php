@@ -190,7 +190,7 @@ if(empty($session->get('uid'))){
 <li class="clearfix"><a href="index.php?do=user&view=index" title="用户中心"><div class="icon16 cog reverse"></div>用户中心</a></li>
 <li class="clearfix"><a href="http://localhost/weike/index.php?do=space&member_id=11" title="我的店铺" id="space"><div class="icon16 compass reverse"></div>我的店铺</a></li>
 <!--<li class="clearfix"><a href="index.php?do=user&view=message" title="站内信"><div class="icon16 mail reverse"></div>站内信</a></li>-->
-<li class="clearfix"><a onclick="showWindow('out','index.php?r=login/logout');return false;" title="退出" href="index.php?r=login/logout">退出</a></li>
+<li class="clearfix"><a title="退出" href="index.php?r=login/logout">退出</a></li>
                          </ul>
                     </div>
                     <!--用户登录后导航菜单 end-->
