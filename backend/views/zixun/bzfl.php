@@ -6,12 +6,12 @@
 
 
 <link href="tpl/css/admin_management.css" rel="stylesheet" type="text/css" />
-<link href="../../resource/css/buttons.css" rel="stylesheet" type="text/css" />
+<link href="./resource/css/buttons.css" rel="stylesheet" type="text/css" />
 <link title="style1" href="tpl/skin/default/style.css" rel="stylesheet" type="text/css" />
 <!--<link title="style2" href="tpl/skin/light/style.css" rel="stylesheet" type="text/css" />-->
-<script type="text/javascript" src="../../resource/js/jquery.js"></script>
-<script type="text/javascript" src="../../resource/js/system/keke.js"></script>
-<script type="text/javascript" src="../../resource/js/in.js"></script>
+<script type="text/javascript" src="./resource/js/jquery.js"></script>
+<script type="text/javascript" src="./resource/js/system/keke.js"></script>
+<script type="text/javascript" src="./resource/js/in.js"></script>
 </head>
 <body class="frame_body">
 <div class="frame_content">
@@ -96,7 +96,7 @@
                    <th width="13%">操作</th>
                 </tr>
                 
-                 <tbody id="indus_item_l_100" style="display:;">
+                 <tbody id="indus_item_l_100" style="display">
                   <tr class="item" align="left">
                   <!--	<td>100</td>-->
                     <td class="td28">
@@ -1207,19 +1207,19 @@ readonly="readonly" >
 </script>	
 </div>
 <script type="text/javascript"
-src="../../resource/js/artdialog/artDialog.js"></script>
+src="./resource/js/artdialog/artDialog.js"></script>
 <script type="text/javascript"
-src="../../resource/js/artdialog/jquery.artDialog.js?skin=default"></script>
+src="./resource/js/artdialog/jquery.artDialog.js?skin=default"></script>
 <script type="text/javascript"
-src="../../resource/js/artdialog/artDialog.iframeTools.source.js"></script>
+src="./resource/js/artdialog/artDialog.iframeTools.source.js"></script>
 <script type="text/javascript" src="../../lang/cn/script/lang.js"></script>
 <script type="text/javascript">
 In.add('form_and_validation', {
-path : "../../resource/js/system/form_and_validation.js",
+path : "./resource/js/system/form_and_validation.js",
 type : 'js'
 });
 In.add('xheditor', {
-path : "../../resource/js/xheditor/xheditor.js",
+path : "./resource/js/xheditor/xheditor.js",
 type : 'js'
 });
 In.add('mousewheel', {
@@ -1232,7 +1232,7 @@ path : "tpl/js/table.js",
 type : 'js'
 });
 In.add('calendar', {
-path : "../../resource/js/system/script_calendar.js"
+path : "./resource/js/system/script_calendar.js"
 });
 In('form_and_validation', 'xheditor', 'mousewheel', 'table', 'calendar');
 </script>
