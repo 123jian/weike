@@ -6,12 +6,12 @@
 
 
 <link href="tpl/css/admin_management.css" rel="stylesheet" type="text/css" />
-<link href="../../resource/css/buttons.css" rel="stylesheet" type="text/css" />
+<link href="./resource/css/buttons.css" rel="stylesheet" type="text/css" />
 <link title="style1" href="tpl/skin/default/style.css" rel="stylesheet" type="text/css" />
 <!--<link title="style2" href="tpl/skin/light/style.css" rel="stylesheet" type="text/css" />-->
-<script type="text/javascript" src="../../resource/js/jquery.js"></script>
-<script type="text/javascript" src="../../resource/js/system/keke.js"></script>
-<script type="text/javascript" src="../../resource/js/in.js"></script>
+<script type="text/javascript" src="./resource/js/jquery.js"></script>
+<script type="text/javascript" src="./resource/js/system/keke.js"></script>
+<script type="text/javascript" src="./resource/js/in.js"></script>
 </head>
 <body class="frame_body">
 <div class="frame_content">
@@ -117,7 +117,7 @@
                     <td class="ws_break">2012-08-31</td>
                     <td>
                     	 
-<a href="../../index.php?do=single&art_id=300" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
+<a href="./index.php?do=single&art_id=300" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
 <a href="index.php?do=article&view=edit&art_id=300&type=about&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
 <a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=about&ord[0]=&ord[1]=&art_id=300&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
 </td>
@@ -135,7 +135,7 @@
                     <td class="ws_break">2012-08-31</td>
                     <td>
                     	 
-<a href="../../index.php?do=single&art_id=299" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
+<a href="./index.php?do=single&art_id=299" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
 <a href="index.php?do=article&view=edit&art_id=299&type=about&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
 <a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=about&ord[0]=&ord[1]=&art_id=299&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
 </td>
@@ -186,19 +186,19 @@ noFn :function(){this.close();return false;}
 </script>
 </div>
 <script type="text/javascript"
-src="../../resource/js/artdialog/artDialog.js"></script>
+src="./resource/js/artdialog/artDialog.js"></script>
 <script type="text/javascript"
-src="../../resource/js/artdialog/jquery.artDialog.js?skin=default"></script>
+src="./resource/js/artdialog/jquery.artDialog.js?skin=default"></script>
 <script type="text/javascript"
-src="../../resource/js/artdialog/artDialog.iframeTools.source.js"></script>
-<script type="text/javascript" src="../../lang/cn/script/lang.js"></script>
+src="./resource/js/artdialog/artDialog.iframeTools.source.js"></script>
+<script type="text/javascript" src="./lang/cn/script/lang.js"></script>
 <script type="text/javascript">
 In.add('form_and_validation', {
-path : "../../resource/js/system/form_and_validation.js",
+path : "./resource/js/system/form_and_validation.js",
 type : 'js'
 });
 In.add('xheditor', {
-path : "../../resource/js/xheditor/xheditor.js",
+path : "./resource/js/xheditor/xheditor.js",
 type : 'js'
 });
 In.add('mousewheel', {
@@ -211,7 +211,7 @@ path : "tpl/js/table.js",
 type : 'js'
 });
 In.add('calendar', {
-path : "../../resource/js/system/script_calendar.js"
+path : "./resource/js/system/script_calendar.js"
 });
 In('form_and_validation', 'xheditor', 'mousewheel', 'table', 'calendar');
 </script>

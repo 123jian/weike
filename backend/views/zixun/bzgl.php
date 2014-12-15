@@ -1,3 +1,10 @@
+<?php
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+use yii\widgets\ActiveForm;
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -32,7 +39,7 @@
     	<div class="title"><h2>搜索</h2></div>
         <div class="detail" id="detail">
            
-    <form action="#" method="get" name="s" id="sl">
+    <form action="index.php?r=zixun/bzgl_search" method="post" name="s" id="sl">
             	<input type="hidden" name="do" value="article">
 <input type="hidden" name="view" value="list">
 <input type="hidden" name="type" value="help">
@@ -96,199 +103,38 @@
               <table cellpadding="0" cellspacing="0">
                 <thead>
                   <tr>
-                    <th width="20">ID
-</th>
+                    <th width="20">ID</th>
                     <th width="60">分类</th>
-                    <th width="30%" >帮助标题</th>
+                    <th width="30%">帮助标题</th>
                     <th width="60">访问量</th>
                     <th width="60">发布者</th>
                     <th width="60">发布时间</th>
-
                     <th width="25%">操作</th>
                   </tr>
   </thead>
                   <tbody>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="310" class="checkbox">310</td>
-                    <td class="td28 wraphide">
-                    	威客服务</td>
+                      
+<?php foreach ($model as $item) { ?>                 
+                 <tr class="item">
+                  <td><input type="checkbox" name="ckb[]" id="ckb" value="<?php echo $item['art_id']?>" class="checkbox"><?php echo $item['art_id']?></td>
+                    <td class="td28 wraphide"><?php echo $item['cat_type']?></td>
                     <td>
-                    	<a href="index.php?do=article&view=edit&art_id=310&type=help&page=1" >
-生生世世</a>
+                    	<a href="#" onclick="update(<?php echo $item['art_id']?>);"><?php echo $item['art_title']?></a>
 </td>
-                    <td class="wraphide">0</td>
-                    <td class="wraphide">发生地方</td>
-                    <td class="ws_break">2013-04-03</td>
+                    <td class="wraphide"><?php echo $item['views']?></td>
+                    <td class="wraphide"><a href="#" onclick="update(<?php echo $item['art_id']?>);"><?php echo $item['username']?></a></td>
+                    <td class="ws_break"><?php echo $item['pub_time']?></td>
                     <td>
                     	 
 <a href="../../index.php?do=help&spid=325&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=310&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=310&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+<a href="#" class="button dbl_target" onclick="update(<?php echo $item['art_id']?>);"><span class="pen icon"></span>编辑</a>
+<a href="#"  onclick="del(<?php echo $item['art_id']?>);" class="button"><span class="trash icon"></span>删除</a>
 </td>
                   </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="224" class="checkbox">224</td>
-                    <td class="td28 wraphide">
-                    	帮助中心</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=224&type=help&page=1" >
-认证中心 [荐]</a>
-</td>
-                    <td class="wraphide">0</td>
-                    <td class="wraphide">客客小记</td>
-                    <td class="ws_break">2012-02-17</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=100&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=224&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=224&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="203" class="checkbox">203</td>
-                    <td class="td28 wraphide">
-                    	帮助中心</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=203&type=help&page=1" >
-资讯测试 [图片]</a>
-</td>
-                    <td class="wraphide">63</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2012-01-04</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=100&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=203&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=203&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="131" class="checkbox">131</td>
-                    <td class="td28 wraphide">
-                    	帮助中心</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=131&type=help&page=1" >
-时间财富 [图片]</a>
-</td>
-                    <td class="wraphide">4</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2012-01-07</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=100&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=131&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=131&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="126" class="checkbox">126</td>
-                    <td class="td28 wraphide">
-                    	帮助中心</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=126&type=help&page=1" >
-网站公告5</a>
-</td>
-                    <td class="wraphide">2</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2012-01-07</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=100&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=126&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=126&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="116" class="checkbox">116</td>
-                    <td class="td28 wraphide">
-                    	推广任务</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=116&type=help&page=1" >
-在哪里获取自己的推广链接\代码？</a>
-</td>
-                    <td class="wraphide">0</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2011-11-24</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=317&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=116&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=116&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="115" class="checkbox">115</td>
-                    <td class="td28 wraphide">
-                    	推广任务</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=115&type=help&page=1" >
-什么是推广链接？</a>
-</td>
-                    <td class="wraphide">1</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2011-11-24</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=317&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=115&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=115&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="114" class="checkbox">114</td>
-                    <td class="td28 wraphide">
-                    	推广网站</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=114&type=help&page=1" >
-我做推广员能得到什么？</a>
-</td>
-                    <td class="wraphide">0</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2011-11-24</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=318&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=114&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=114&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="113" class="checkbox">113</td>
-                    <td class="td28 wraphide">
-                    	推广网站</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=113&type=help&page=1" >
-点击推广代码之后，重新进入XX网注册，是算我推广的客户吗</a>
-</td>
-                    <td class="wraphide">0</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2011-11-24</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=318&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=113&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=113&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    <tr class="item">
-                  	<td><input type="checkbox" name="ckb[]" value="112" class="checkbox">112</td>
-                    <td class="td28 wraphide">
-                    	推广任务</td>
-                    <td>
-                    	<a href="index.php?do=article&view=edit&art_id=112&type=help&page=1" >
-作为推手需要什么条件</a>
-</td>
-                    <td class="wraphide">0</td>
-                    <td class="wraphide">匿名</td>
-                    <td class="ws_break">2011-11-24</td>
-                    <td>
-                    	 
-<a href="../../index.php?do=help&spid=317&page=1" target="_blank" class="button"><span class="book icon"></span>浏览</a> 
-<a href="index.php?do=article&view=edit&art_id=112&type=help&page=1" class="button dbl_target"><span class="pen icon"></span>编辑</a>
-<a href="index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&art_id=112&ac=del&page=1"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
-</td>
-                  </tr>
-                                    </tbody>
+                      
+<?php } ?>                       
+
+        </tbody>
   <tfoot>
                   <tr>
                     <td colspan="7">
@@ -296,19 +142,62 @@
                   		<input type="checkbox" onclick="checkall(event);" id="checkbox" name="checkbox"/>
                         <label for="checkbox">全选</label><!-- 全选 -->
                         <input type="hidden" name="sbt_action" class="sbt_action"/>
-<button name="sbt_action" type="submit" value="批量删除" onclick="return batch_act(this,'frm_list');" class="pill negative"><span class="icon trash"></span>批量删除</button>
+<button name="sbt_action" type="button" value="批量删除" onclick="pldel()" class="pill negative"><span class="icon trash"></span>批量删除</button>
                     </div>
                     </td>
                   </tr>
                 </tfoot>
               </table>
-  <div class="page"><span> 1 / 5页 </span> <a class="selected">1</a><a href=javascript:; onclick=ajaxpage('ajax_dom','index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&page=2','2','1')>2</a><a href=javascript:; onclick=ajaxpage('ajax_dom','index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&page=3','3','1')>3</a><a href=javascript:; onclick=ajaxpage('ajax_dom','index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&page=4','4','1')>4</a><a href=javascript:; onclick=ajaxpage('ajax_dom','index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&page=5','5','1')>5</a><a href=javascript:; onclick=ajaxpage('ajax_dom','index.php?do=article&view=list&w[username]=&w[art_title]=&w[art_cat_id]=&page_size=&page=&type=help&ord[0]=&ord[1]=&page=2','2','1')>下一页>></a></div>
+  <div class="page">
+      <?= LinkPager::widget(['pagination' => $pages]);?>
+
+      
+  </div>
   </div>
         	</form>
         </div>       
     </div>
 <!--主体结束-->
 <script type="text/javascript">
+//编辑
+function update(id){    
+    var id=id;
+    //alert(id);  
+    location.href="index.php?r=zixun/bzgl_update&art_id="+id;     
+}
+
+//删除
+function del(id){    
+    var id=id;
+    //alert(id);
+    //return false;
+    if(confirm('你确认删除操作？')){
+      location.href="index.php?r=zixun/bzgl_del&art_id="+id;    
+    }   
+}
+
+//批量删除
+function pldel(){
+    //alert(123);
+    var str=document.getElementsByName('ckb[]');
+    //alert(str);
+    var length=str.length;
+    //alert(length);
+    var ids='';
+    for(i=0;i<length;i++){
+        if(str[i].checked==true){
+            ids+=str[i].value+',';
+        } 
+    }
+    //alert(ids);
+    if(ids==''){
+        alert('您没有选择任何操作项');
+    }else if(confirm('你确认删除操作？')){
+        location.href="index.php?r=zixun/bzgl_pldel&ids="+ids;        
+    }
+}
+
+
 function createHtml(writedir,filename){
 var url = "index.php?do=static&view=update&sbt_edit=1&write_dir="+writedir+"&file_name="+filename;
 ajaxDialog(url);

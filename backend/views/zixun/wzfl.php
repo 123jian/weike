@@ -1,1152 +1,860 @@
-		"\t",
-			"button_action:            ",
-			this.settings.button_action.toString(),
-			"\n",
-			"\t",
-			"button_disabled:          ",
-			this.settings.button_disabled.toString(),
-			"\n",
-			"\t",
-			"custom_settings:          ",
-			this.settings.custom_settings.toString(),
-			"\n",
-			"Event Handlers:\n",
-			"\t",
-			"swfupload_loaded_handler assigned:  ",
-			(typeof this.settings.swfupload_loaded_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"file_dialog_start_handler assigned: ",
-			(typeof this.settings.file_dialog_start_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"file_queued_handler assigned:       ",
-			(typeof this.settings.file_queued_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"file_queue_error_handler assigned:  ",
-			(typeof this.settings.file_queue_error_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"upload_start_handler assigned:      ",
-			(typeof this.settings.upload_start_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"upload_progress_handler assigned:   ",
-			(typeof this.settings.upload_progress_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"upload_error_handler assigned:      ",
-			(typeof this.settings.upload_error_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"upload_success_handler assigned:    ",
-			(typeof this.settings.upload_success_handler === "function")
-					.toString(),
-			"\n",
-			"\t",
-			"upload_complete_handler assigned:   ",
-			(typeof this.settings.upload_complete_handler === "function")
-					.toString(), "\n", "\t",
-			"debug_handler assigned:             ",
-			(typeof this.settings.debug_handler === "function").toString(),
-			"\n" ].join(""));
-};
-SWFUpload.prototype.addSetting = function(d, f, e) {
-	if (f == undefined) {
-		return (this.settings[d] = e);
-	} else {
-		return (this.settings[d] = f);
-	}
-};
-SWFUpload.prototype.getSetting = function(b) {
-	if (this.settings[b] != undefined) {
-		return this.settings[b];
-	}
-	return "";
-};
-SWFUpload.prototype.callFlash = function(functionName, argumentArray) {
-	argumentArray = argumentArray || [];
-	var movieElement = this.getMovieElement();
-	var returnValue, returnString;
-	try {
-		returnString = movieElement.CallFunction('<invoke name="'
-				+ functionName + '" returntype="javascript">'
-				+ __flash__argumentsToXML(argumentArray, 0) + "</invoke>");
-		returnValue = eval(returnString);
-	} catch (ex) {
-		throw "Call to " + functionName + " failed";
-	}
-	if (returnValue != undefined && typeof returnValue.post === "object") {
-		returnValue = this.unescapeFilePostParams(returnValue);
-	}
-	return returnValue;
-};
-SWFUpload.prototype.selectFile = function() {
-	this.callFlash("SelectFile");
-};
-SWFUpload.prototype.selectFiles = function() {
-	this.callFlash("SelectFiles");
-};
-SWFUpload.prototype.startUpload = function(b) {
-	this.callFlash("StartUpload", [ b ]);
-};
-SWFUpload.prototype.cancelUpload = function(d, c) {
-	if (c !== false) {
-		c = true;
-	}
-	this.callFlash("CancelUpload", [ d, c ]);
-};
-SWFUpload.prototype.stopUpload = function() {
-	this.callFlash("StopUpload");
-};
-SWFUpload.prototype.getStats = function() {
-	return this.callFlash("GetStats");
-};
-SWFUpload.prototype.setStats = function(b) {
-	this.callFlash("SetStats", [ b ]);
-};
-SWFUpload.prototype.getFile = function(b) {
-	if (typeof (b) === "number") {
-		return this.callFlash("GetFileByIndex", [ b ]);
-	} else {
-		return this.callFlash("GetFile", [ b ]);
-	}
-};
-SWFUpload.prototype.addFileParam = function(e, d, f) {
-	return this.callFlash("AddFileParam", [ e, d, f ]);
-};
-SWFUpload.prototype.removeFileParam = function(d, c) {
-	this.callFlash("RemoveFileParam", [ d, c ]);
-};
-SWFUpload.prototype.setUploadURL = function(b) {
-	this.settings.upload_url = b.toString();
-	this.callFlash("SetUploadURL", [ b ]);
-};
-SWFUpload.prototype.setPostParams = function(b) {
-	this.settings.post_params = b;
-	this.callFlash("SetPostParams", [ b ]);
-};
-SWFUpload.prototype.addPostParam = function(d, c) {
-	this.settings.post_params[d] = c;
-	this.callFlash("SetPostParams", [ this.settings.post_params ]);
-};
-SWFUpload.prototype.removePostParam = function(b) {
-	delete this.settings.post_params[b];
-	this.callFlash("SetPostParams", [ this.settings.post_params ]);
-};
-SWFUpload.prototype.setFileTypes = function(d, c) {
-	this.settings.file_types = d;
-	this.settings.file_types_description = c;
-	this.callFlash("SetFileTypes", [ d, c ]);
-};
-SWFUpload.prototype.setFileSizeLimit = function(b) {
-	this.settings.file_size_limit = b;
-	this.callFlash("SetFileSizeLimit", [ b ]);
-};
-SWFUpload.prototype.setFileUploadLimit = function(b) {
-	this.settings.file_upload_limit = b;
-	this.callFlash("SetFileUploadLimit", [ b ]);
-};
-SWFUpload.prototype.setFileQueueLimit = function(b) {
-	this.settings.file_queue_limit = b;
-	this.callFlash("SetFileQueueLimit", [ b ]);
-};
-SWFUpload.prototype.setFilePostName = function(b) {
-	this.settings.file_post_name = b;
-	this.callFlash("SetFilePostName", [ b ]);
-};
-SWFUpload.prototype.setUseQueryString = function(b) {
-	this.settings.use_query_string = b;
-	this.callFlash("SetUseQueryString", [ b ]);
-};
-SWFUpload.prototype.setRequeueOnError = function(b) {
-	this.settings.requeue_on_error = b;
-	this.callFlash("SetRequeueOnError", [ b ]);
-};
-SWFUpload.prototype.setHTTPSuccess = function(b) {
-	if (typeof b === "string") {
-		b = b.replace(" ", "").split(",");
-	}
-	this.settings.http_success = b;
-	this.callFlash("SetHTTPSuccess", [ b ]);
-};
-SWFUpload.prototype.setAssumeSuccessTimeout = function(b) {
-	this.settings.assume_success_timeout = b;
-	this.callFlash("SetAssumeSuccessTimeout", [ b ]);
-};
-SWFUpload.prototype.setDebugEnabled = function(b) {
-	this.settings.debug_enabled = b;
-	this.callFlash("SetDebugEnabled", [ b ]);
-};
-SWFUpload.prototype.setButtonImageURL = function(b) {
-	if (b == undefined) {
-		b = "";
-	}
-	this.settings.button_image_url = b;
-	this.callFlash("SetButtonImageURL", [ b ]);
-};
-SWFUpload.prototype.setButtonDimensions = function(f, e) {
-	this.settings.button_width = f;
-	this.settings.button_height = e;
-	var d = this.getMovieElement();
-	if (d != undefined) {
-		d.style.width = f + "px";
-		d.style.height = e + "px";
-	}
-	this.callFlash("SetButtonDimensions", [ f, e ]);
-};
-SWFUpload.prototype.setButtonText = function(b) {
-	this.settings.button_text = b;
-	this.callFlash("SetButtonText", [ b ]);
-};
-SWFUpload.prototype.setButtonTextPadding = function(c, d) {
-	this.settings.button_text_top_padding = d;
-	this.settings.button_text_left_padding = c;
-	this.callFlash("SetButtonTextPadding", [ c, d ]);
-};
-SWFUpload.prototype.setButtonTextStyle = function(b) {
-	this.settings.button_text_style = b;
-	this.callFlash("SetButtonTextStyle", [ b ]);
-};
-SWFUpload.prototype.setButtonDisabled = function(b) {
-	this.settings.button_disabled = b;
-	this.callFlash("SetButtonDisabled", [ b ]);
-};
-SWFUpload.prototype.setButtonAction = function(b) {
-	this.settings.button_action = b;
-	this.callFlash("SetButtonAction", [ b ]);
-};
-SWFUpload.prototype.setButtonCursor = function(b) {
-	this.settings.button_cursor = b;
-	this.callFlash("SetButtonCursor", [ b ]);
-};
-SWFUpload.prototype.queueEvent = function(d, f) {
-	if (f == undefined) {
-		f = [];
-	} else {
-		if (!(f instanceof Array)) {
-			f = [ f ];
-		}
-	}
-	var e = this;
-	if (typeof this.settings[d] === "function") {
-		this.eventQueue.push(function() {
-			this.settings[d].apply(this, f);
-		});
-		setTimeout(function() {
-			e.executeNextEvent();
-		}, 0);
-	} else {
-		if (this.settings[d] !== null) {
-			throw "Event handler " + d + " is unknown or is not a function";
-		}
-	}
-};
-SWFUpload.prototype.executeNextEvent = function() {
-	var b = this.eventQueue ? this.eventQueue.shift() : null;
-	if (typeof (b) === "function") {
-		b.apply(this);
-	}
-};
-SWFUpload.prototype.unescapeFilePostParams = function(l) {
-	var j = /[$]([0-9a-f]{4})/i;
-	var i = {};
-	var k;
-	if (l != undefined) {
-		for ( var h in l.post) {
-			if (l.post.hasOwnProperty(h)) {
-				k = h;
-				var g;
-				while ((g = j.exec(k)) !== null) {
-					k = k.replace(g[0], String.fromCharCode(parseInt("0x"
-							+ g[1], 16)));
-				}
-				i[k] = l.post[h];
-			}
-		}
-		l.post = i;
-	}
-	return l;
-};
-SWFUpload.prototype.testExternalInterface = function() {
-	try {
-		return this.callFlash("TestExternalInterface");
-	} catch (b) {
-		return false;
-	}
-};
-SWFUpload.prototype.flashReady = function() {
-	var b = this.getMovieElement();
-	if (!b) {
-		this
-				.debug("Flash called back ready but the flash movie can't be found.");
-		return;
-	}
-	this.cleanUp(b);
-	this.queueEvent("swfupload_loaded_handler");
-};
-SWFUpload.prototype.cleanUp = function(f) {
-	try {
-		if (this.movieElement && typeof (f.CallFunction) === "unknown") {
-			this
-					.debug("Removing Flash functions hooks (this should only run in IE and should prevent memory leaks)");
-			for ( var h in f) {
-				try {
-					if (typeof (f[h]) === "function") {
-						f[h] = null;
-					}
-				} catch (e) {
-				}
-			}
-		}
-	} catch (g) {
-	}
-	window.__flash__removeCallback = function(c, b) {
-		try {
-			if (c) {
-				c[b] = null;
-			}
-		} catch (a) {
-		}
-	};
-};
-SWFUpload.prototype.fileDialogStart = function() {
-	this.queueEvent("file_dialog_start_handler");
-};
-SWFUpload.prototype.fileQueued = function(b) {
-	b = this.unescapeFilePostParams(b);
-	this.queueEvent("file_queued_handler", b);
-};
-SWFUpload.prototype.fileQueueError = function(e, f, d) {
-	e = this.unescapeFilePostParams(e);
-	this.queueEvent("file_queue_error_handler", [ e, f, d ]);
-};
-SWFUpload.prototype.fileDialogComplete = function(d, f, e) {
-	this.queueEvent("file_dialog_complete_handler", [ d, f, e ]);
-};
-SWFUpload.prototype.uploadStart = function(b) {
-	b = this.unescapeFilePostParams(b);
-	this.queueEvent("return_upload_start_handler", b);
-};
-SWFUpload.prototype.returnUploadStart = function(d) {
-	var c;
-	if (typeof this.settings.upload_start_handler === "function") {
-		d = this.unescapeFilePostParams(d);
-		c = this.settings.upload_start_handler.call(this, d);
-	} else {
-		if (this.settings.upload_start_handler != undefined) {
-			throw "upload_start_handler must be a function";
-		}
-	}
-	if (c === undefined) {
-		c = true;
-	}
-	c = !!c;
-	this.callFlash("ReturnUploadStart", [ c ]);
-};
-SWFUpload.prototype.uploadProgress = function(e, f, d) {
-	e = this.unescapeFilePostParams(e);
-	this.queueEvent("upload_progress_handler", [ e, f, d ]);
-};
-SWFUpload.prototype.uploadError = function(e, f, d) {
-	e = this.unescapeFilePostParams(e);
-	this.queueEvent("upload_error_handler", [ e, f, d ]);
-};
-SWFUpload.prototype.uploadSuccess = function(d, e, f) {
-	d = this.unescapeFilePostParams(d);
-	this.queueEvent("upload_success_handler", [ d, e, f ]);
-};
-SWFUpload.prototype.uploadComplete = function(b, e) {
-	b = this.unescapeFilePostParams(b);
-	this.queueEvent("upload_complete_handler", [ b, e ]);
-};
-SWFUpload.prototype.debug = function(b) {
-	this.queueEvent("debug_handler", b);
-};
-SWFUpload.prototype.debugMessage = function(h) {
-	if (this.settings.debug) {
-		var f, g = [];
-		if (typeof h === "object" && typeof h.name === "string"
-				&& typeof h.message === "string") {
-			for ( var e in h) {
-				if (h.hasOwnProperty(e)) {
-					g.push(e + ": " + h[e]);
-				}
-			}
-			f = g.join("\n") || "";
-			g = f.split("\n");
-			f = "EXCEPTION: " + g.join("\nEXCEPTION: ");
-			SWFUpload.Console.writeLine(f);
-		} else {
-			SWFUpload.Console.writeLine(h);
-		}
-	}
-};
-SWFUpload.Console = {};
-SWFUpload.Console.writeLine = function(g) {
-	var e, f;
-	try {
-		e = document.getElementById("SWFUpload_Console");
-		if (!e) {
-			f = document.createElement("form");
-			document.getElementsByTagName("body")[0].appendChild(f);
-			e = document.createElement("textarea");
-			e.id = "SWFUpload_Console";
-			e.style.fontFamily = "monospace";
-			e.setAttribute("wrap", "off");
-			e.wrap = "off";
-			e.style.overflow = "auto";
-			e.style.width = "700px";
-			e.style.height = "350px";
-			e.style.margin = "5px";
-			f.appendChild(e);
-		}
-		e.value += g + "\n";
-		e.scrollTop = e.scrollHeight - e.clientHeight;
-	} catch (h) {
-		showDialog("Exception: " + h.name + " Message: " + h.message, 'alert',
-				L.operate_notice);
-		// alert("Exception: " + h.name + " Message: " + h.message);
-	}
-};
-(function(c) {
-	var b = {
-		init : function(d, e) {
-			return this
-					.each(function() {
-						var n = c(this);
-						var m = n.clone();
-						var j = c.extend({
-							id : n.attr("id"),
-							swf : "uploadify.swf",
-							uploader : "uploadify.php",
-							deleter : "",
-							auto : true,
-							buttonClass : "",
-							buttonCursor : "hand",
-							buttonImage : null,
-							buttonText : L.upload_file,
-							checkExisting : false,
-							debug : false,
-							fileObjName : "upload",
-							resText : "file_ids",
-							fileSizeLimit : 0,
-							fileTypeDesc : "All Files",
-							fileTypeExts : "*.*",
-							height : 30,
-							method : "post",
-							multi : true,
-							hide : false,
-							json : {},
-							formData : {},
-							preventCaching : true,
-							progressData : "percentage",
-							queueID : false,
-							queueSizeLimit : 999,
-							removeCompleted : true,
-							removeTimeout : 3,
-							requeueErrors : false,
-							successTimeout : 30,
-							uploadLimit : 0,
-							width : 120,
-							overrideEvents : []
-						}, d);
-						var g = {
-							assume_success_timeout : j.successTimeout,
-							button_placeholder_id : j.id,
-							button_width : j.width,
-							button_height : j.height,
-							button_text : null,
-							button_text_style : null,
-							button_text_top_padding : 0,
-							button_text_left_padding : 0,
-							button_action : (j.multi ? SWFUpload.BUTTON_ACTION.SELECT_FILES
-									: SWFUpload.BUTTON_ACTION.SELECT_FILE),
-							button_disabled : false,
-							button_cursor : (j.buttonCursor == "arrow" ? SWFUpload.CURSOR.ARROW
-									: SWFUpload.CURSOR.HAND),
-							button_window_mode : SWFUpload.WINDOW_MODE.TRANSPARENT,
-							debug : j.debug,
-							requeue_on_error : j.requeueErrors,
-							file_post_name : j.fileObjName,
-							file_size_limit : j.fileSizeLimit,
-							file_types : j.fileTypeExts,
-							file_types_description : j.fileTypeDesc,
-							file_queue_limit : j.queueSizeLimit,
-							file_upload_limit : j.uploadLimit,
-							flash_url : j.swf,
-							prevent_swf_caching : j.preventCaching,
-							post_params : j.formData,
-							upload_url : j.uploader,
-							use_query_string : (j.method == "get"),
-							file_dialog_complete_handler : a.onDialogClose,
-							file_dialog_start_handler : a.onDialogOpen,
-							file_queued_handler : a.onSelect,
-							file_queue_error_handler : a.onSelectError,
-							swfupload_loaded_handler : j.onSWFReady,
-							upload_complete_handler : a.onUploadComplete,
-							upload_error_handler : a.onUploadError,
-							upload_progress_handler : a.onUploadProgress,
-							upload_start_handler : a.onUploadStart,
-							upload_success_handler : a.onUploadSuccess
-						};
-						if (e) {
-							g = c.extend(g, e);
-						}
-						g = c.extend(g, j);
-						var o = swfobject.getFlashPlayerVersion();
-						var h = (o.major >= 9);
-						if (h) {
-							window["uploadify_" + j.id] = new SWFUpload(g);
-							var i = window["uploadify_" + j.id];
-							n.data("uploadify", i);
-							var l = c("<div />", {
-								id : j.id,
-								"class" : "uploadify",
-								css : {
-									height : j.height + "px",
-									width : j.width + "px"
-								}
-							});
-							c("#" + i.movieName).wrap(l);
-							l = c("#" + j.id);
-							l.data("uploadify", i);
-							var f = c("<div />", {
-								id : j.id + "-button",
-								"class" : "uploadify-button " + j.buttonClass
-							});
-							if (j.buttonImage) {
-								f.css({
-									"background-image" : "url('"
-											+ j.buttonImage + "')",
-									"text-indent" : "-9999px"
-								});
-							}
-							f.html(
-									'<span class="uploadify-button-text">'
-											+ j.buttonText + "</span>").css({
-								height : j.height + "px",
-								"line-height" : j.height + "px",
-								width : j.width + "px"
-							});
-							l.append(f);
-							c("#" + i.movieName).css({
-								position : "absolute",
-								"z-index" : 1
-							});
-							if (!j.queueID) {
-								var k = c("<div />", {
-									id : j.id + "-queue",
-									"class" : "uploadify-queue"
-								});
-								l.after(k);
-								i.settings.queueID = j.id + "-queue";
-								i.settings.defaultQueue = true;
-							}
-							i.queueData = {
-								files : {},
-								filesSelected : 0,
-								filesQueued : 0,
-								filesReplaced : 0,
-								filesCancelled : 0,
-								filesErrored : 0,
-								uploadsSuccessful : 0,
-								uploadsErrored : 0,
-								averageSpeed : 0,
-								queueLength : 0,
-								queueSize : 0,
-								uploadSize : 0,
-								queueBytesUploaded : 0,
-								uploadQueue : [],
-								errorMsg : L.u_file_has_not_added_into_quene
-							};
-							i.original = m;
-							i.wrapper = l;
-							i.button = f;
-							i.queue = k;
-							if (j.onInit) {
-								j.onInit.call(n, i);
-							}
-						} else {
-							if (j.onFallback) {
-								j.onFallback.call(n);
-							}
-						}
-					});
-		},
-		cancel : function(d, f) {
-			var e = arguments;
-			var deleteFile = function(j, s, i, fid) {
-				fid && c.getJSON(j.deleter + '&file_id=' + fid, function(json) {
-					if (json.status == 1) {
-						var file_ids = c("#" + j.resText).val().toString();
-						var tmp = file_ids.split(",");
-						tmp.splice(i, 1);
-						file_ids = tmp.join(',');
-						c("#" + j.resText).val(file_ids);
-						var stats = s.getStats();
-						stats.successful_uploads--;
-						s.setStats(stats);
-					}
-				});
-			};
-			this
-					.each(function() {
-						var l = c(this), i = l.data("uploadify"), j = i.settings, h = -1;
-						if (e[0]) {
-							if (e[0] == "*") {
-								var g = i.queueData.queueLength;
-								c("#" + j.queueID)
-										.find(".uploadify-queue-item")
-										.each(
-												function() {
-													h++;
-													var fid = c(this).attr(
-															"fid");
-													deleteFile(j, i, c(this)
-															.index(), fid);
-													if (e[1] === true) {
-														i.cancelUpload(c(this)
-																.attr("id"),
-																false);
-													} else {
-														i.cancelUpload(c(this)
-																.attr("id"));
-													}
-													c(this)
-															.find(".data")
-															.removeClass("data")
-															.html(L.u_cancel);
-													c(this)
-															.find(
-																	".uploadify-progress-bar")
-															.remove();
-													c(this)
-															.delay(
-																	1000 + 100 * h)
-															.fadeOut(
-																	500,
-																	function() {
-																		c(this)
-																				.remove();
-																	});
-												});
-								i.queueData.queueSize = 0;
-								if (j.onClearQueue) {
-									j.onClearQueue.call(l, g);
-								}
-							} else {
-								for ( var m = 0; m < e.length; m++) {
-									var q = c("#" + e[m]);
-									var fid = q.attr("fid");
-									deleteFile(j, i, q.index(), fid);
-									i.cancelUpload(e[m]);
-									q.find(".data").removeClass("data").html(
-											L.u_cancel);
-									q.find(".uploadify-progress-bar").remove();
-									q.delay(1000 + 100 * m).fadeOut(500,
-											function() {
-												c(this).remove();
-											});
-								}
-							}
-						} else {
-							var k = c("#" + j.queueID).find(
-									".uploadify-queue-item").get(0);
-							$item = c(k);
-							var fid = $item.attr("fid");
-							deleteFile(j, i, $item.index(), fid);
-							i.cancelUpload($item.attr("id"));
-							$item.find(".data").removeClass("data").html(
-									" - Cancelled");
-							$item.find(".uploadify-progress-bar").remove();
-							$item.delay(1000).fadeOut(500, function() {
-								c(this).remove();
-							});
-						}
-					});
-		},
-		destroy : function() {
-			this.each(function() {
-				var f = c(this), d = f.data("uploadify"), e = d.settings;
-				d.destroy();
-				if (e.defaultQueue) {
-					c("#" + e.queueID).remove();
-				}
-				c("#" + e.id).replaceWith(d.original);
-				if (e.onDestroy) {
-					e.onDestroy.call(this);
-				}
-				delete d;
-			});
-		},
-		disable : function(d) {
-			this.each(function() {
-				var g = c(this), e = g.data("uploadify"), f = e.settings;
-				if (d) {
-					e.button.addClass("disabled");
-					if (f.onDisable) {
-						f.onDisable.call(this);
-					}
-				} else {
-					e.button.removeClass("disabled");
-					if (f.onEnable) {
-						f.onEnable.call(this);
-					}
-				}
-				e.setButtonDisabled(d);
-			});
-		},
-		settings : function(e, g, h) {
-			var d = arguments;
-			var f = g;
-			this
-					.each(function() {
-						var k = c(this), i = k.data("uploadify"), j = i.settings;
-						if (typeof (d[0]) == "object") {
-							for ( var l in g) {
-								setData(l, g[l]);
-							}
-						}
-						if (d.length === 1) {
-							f = j[e];
-						} else {
-							switch (e) {
-							case "uploader":
-								i.setUploadURL(g);
-								break;
-							case "formData":
-								if (!h) {
-									g = c.extend(j.formData, g);
-								}
-								i.setPostParams(j.formData);
-								break;
-							case "method":
-								if (g == "get") {
-									i.setUseQueryString(true);
-								} else {
-									i.setUseQueryString(false);
-								}
-								break;
-							case "fileObjName":
-								i.setFilePostName(g);
-								break;
-							case "fileTypeExts":
-								i.setFileTypes(g, j.fileTypeDesc);
-								break;
-							case "fileTypeDesc":
-								i.setFileTypes(j.fileTypeExts, g);
-								break;
-							case "fileSizeLimit":
-								i.setFileSizeLimit(g);
-								break;
-							case "uploadLimit":
-								i.setFileUploadLimit(g);
-								break;
-							case "queueSizeLimit":
-								i.setFileQueueLimit(g);
-								break;
-							case "buttonImage":
-								i.button.css("background-image", settingValue);
-								break;
-							case "buttonCursor":
-								if (g == "arrow") {
-									i.setButtonCursor(SWFUpload.CURSOR.ARROW);
-								} else {
-									i.setButtonCursor(SWFUpload.CURSOR.HAND);
-								}
-								break;
-							case "buttonText":
-								c("#" + j.id + "-button").find(
-										".uploadify-button-text").html(g);
-								break;
-							case "width":
-								i.setButtonDimensions(g, j.height);
-								break;
-							case "height":
-								i.setButtonDimensions(j.width, g);
-								break;
-							case "multi":
-								if (g) {
-									i
-											.setButtonAction(SWFUpload.BUTTON_ACTION.SELECT_FILES);
-								} else {
-									i
-											.setButtonAction(SWFUpload.BUTTON_ACTION.SELECT_FILE);
-								}
-								break;
-							}
-							j[e] = g;
-						}
-					});
-			if (d.length === 1) {
-				return f;
-			}
-		},
-		stop : function() {
-			this.each(function() {
-				var e = c(this), d = e.data("uploadify");
-				d.queueData.averageSpeed = 0;
-				d.queueData.uploadSize = 0;
-				d.queueData.bytesUploaded = 0;
-				d.queueData.uploadQueue = [];
-				d.stopUpload();
-			});
-		},
-		upload : function() {
-			var d = arguments;
-			this
-					.each(function() {
-						var f = c(this), e = f.data("uploadify");
-						e.queueData.averageSpeed = 0;
-						e.queueData.uploadSize = 0;
-						e.queueData.bytesUploaded = 0;
-						e.queueData.uploadQueue = [];
-						if (d[0]) {
-							if (d[0] == "*") {
-								e.queueData.uploadSize = e.queueData.queueSize;
-								e.queueData.uploadQueue.push("*");
-								e.startUpload();
-							} else {
-								for ( var g = 0; g < d.length; g++) {
-									e.queueData.uploadSize += e.queueData.files[d[g]].size;
-									e.queueData.uploadQueue.push(d[g]);
-								}
-								e.startUpload(e.queueData.uploadQueue.shift());
-							}
-						} else {
-							e.startUpload();
-						}
-					});
-		}
-	};
-	var a = {
-		onDialogOpen : function() {
-			var d = this.settings;
-			this.queueData.errorMsg = L.u_file_has_not_added_into_quene;
-			this.queueData.filesReplaced = 0;
-			this.queueData.filesCancelled = 0;
-			if (d.onDialogOpen) {
-				d.onDialogOpen.call(this);
-			}
-		},
-		onDialogClose : function(d, f, g) {
-			var e = this.settings;
-			this.queueData.filesErrored = d - f;
-			this.queueData.filesSelected = d;
-			this.queueData.filesQueued = f - this.queueData.filesCancelled;
-			this.queueData.queueLength = g;
-			if (c.inArray("onDialogClose", e.overrideEvents) < 0) {
-				if (this.queueData.filesErrored > 0) {
-					showDialog(this.queueData.errorMsg, 'alert',
-							L.operate_notice);
-					// alert(this.queueData.errorMsg);
-				}
-			}
-			if (e.onDialogClose) {
-				e.onDialogClose.call(this, this.queueData);
-			}
-			if (e.auto) {
-				c("#" + e.id).uploadify("upload", "*");
-			}
-		},
-		onSelect : function(g) {
-			var h = this.settings;
-			var e = {};
-			for ( var f in this.queueData.files) {
-				e = this.queueData.files[f];
-				if (e.uploaded != true && e.name == g.name) {
-					var d = showDialog(L.u_file + g.name
-							+ L.u_replace_this_file, 'confirm',
-							L.operate_warning, function() {
-								return true;
-							});
-					/*
-					 * confirm('The file named "' + g.name + '" is already in
-					 * the queue.\nDo you want to replace the existing item in
-					 * the queue?');
-					 */
-					if (!d) {
-						this.cancelUpload(g.id);
-						this.queueData.filesCancelled++;
-						return false;
-					} else {
-						c("#" + e.id).remove();
-						this.cancelUpload(e.id);
-						this.queueData.filesReplaced++;
-					}
-				}
-			}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>keke admin</title>
 
-			var i = Math.round(g.size / 1024);
-			var l = "KB";
-			if (i > 1000) {
-				i = Math.round(i / 1000);
-				l = "MB";
-			}
-			var k = i.toString().split(".");
-			i = k[0];
-			if (k.length > 1) {
-				i += "." + k[1].substr(0, 2);
-			}
-			i += l;
-			var j = g.name;
-			if (j.length > 25) {
-				j = j.substr(0, 25) + "...";
-			}
-			if (c.inArray("onSelect", h.overrideEvents) < 0) {
-				c("#" + h.queueID)
-						.append(
-								'<div id="'
-										+ g.id
-										+ '" class="uploadify-queue-item">					<div class="cancel">						<a href="javascript:$(\'#'
-										+ h.id
-										+ "').uploadify('cancel', '"
-										+ g.id
-										+ '\')">X</a>					</div>					<span class="fileName">'
-										+ j
-										+ " ("
-										+ i
-										+ ')</span><span class="data"></span>					<div class="uploadify-progress">						<div class="uploadify-progress-bar"><!--Progress Bar--></div>					</div>				</div>');
-			}
-			this.queueData.queueSize += g.size;
 
-			this.queueData.files[g.id] = g;
-			if (h.onSelect) {
-				h.onSelect.apply(this, arguments);
-			}
-		},
-		onSelectError : function(d, g, f) {
-			var e = this.settings;
-			if (c.inArray("onSelectError", e.overrideEvents) < 0) {
-				switch (g) {
-				case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
-					if (e.queueSizeLimit > f) {
-						this.queueData.errorMsg += "\n"
-								+ L.u_files_over_allowed_num + f + L.u_files;
-					} else {
-						this.queueData.errorMsg += "\n"
-								+ L.u_select_num_over_allowed + e.uploadLimit
-								+ ").";
-					}
-					break;
-				case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-					this.queueData.errorMsg += '\n' + L.u_file + d.name
-							+ L.u_over_size_limit + e.fileSizeLimit
-							+ L.u_r_backets;
-					break;
-				case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-					this.queueData.errorMsg += '\n' + L.u_file + d.name
-							+ L.u_is_null;
-					break;
-				case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-					this.queueData.errorMsg += '\n' + L.u_file + d.name
-							+ L.u_not_allowed_file_ext + e.fileTypeDesc
-							+ L.u_r_backets;
-					break;
-				}
-			}
-			if (g != SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED) {
-				delete this.queueData.files[d.id];
-			}
-			if (e.onSelectError) {
-				e.onSelectError.apply(this, arguments);
-			}
-		},
-		onQueueComplete : function() {
-			if (this.settings.onQueueComplete) {
-				this.settings.onQueueComplete.call(this,
-						this.settings.queueData);
-			}
-		},
-		onUploadComplete : function(f, e) {
-			var g = this.settings, d = this;
-			var json = g.json;
-			var e = this.getStats();
-			this.queueData.queueLength = e.files_queued;
-			if (this.queueData.uploadQueue[0] == "*") {
-				if (this.queueData.queueLength > 0) {
-					this.startUpload();
-				} else {
-					this.queueData.uploadQueue = [];
-					if (g.onQueueComplete) {
-						g.onQueueComplete.call(this, this.queueData);
-					}
-				}
-			} else {
-				if (this.queueData.uploadQueue.length > 0) {
-					this.startUpload(this.queueData.uploadQueue.shift());
-				} else {
-					this.queueData.uploadQueue = [];
-					if (g.onQueueComplete) {
-						g.onQueueComplete.call(this, this.queueData);
-					}
-				}
-			}
-			if (c.inArray("onUploadComplete", g.overrideEvents) < 0) {
-				if (g.removeCompleted) {
-					c("#" + f.id).attr("fid", json.fid);
-					switch (f.filestatus) {
-					case SWFUpload.FILE_STATUS.COMPLETE:
-						setTimeout(function() {
-							if (c("#" + f.id)) {
-								d.queueData.queueSize -= f.size;
-								delete d.queueData.files[f.id];
-								g.hide == true
-										&& c("#" + f.id).fadeOut(500,
-												function() {
-													c(this).remove();
-												});
-							}
-						}, g.removeTimeout * 1000);
-						break;
-					case SWFUpload.FILE_STATUS.ERROR:
-						if (!g.requeueErrors) {
-							setTimeout(function() {
-								if (c("#" + f.id)) {
-									d.queueData.queueSize -= f.size;
-									delete d.queueData.files[f.id];
-									g.hide == true
-											&& c("#" + f.id).fadeOut(500,
-													function() {
-														c(this).remove();
-													});
-								}
-							}, g.removeTimeout * 1000);
-						}
-						break;
-					}
-				} else {
-					f.uploaded = true;
-				}
-			}
-			if (g.onUploadComplete) {
-				g.onUploadComplete.call(this, f, e);
-			}
-		},
-		onUploadError : function(e, i, h) {
-			var f = this.settings;
-			var g = "Error";
-			switch (i) {
-			case SWFUpload.UPLOAD_ERROR.HTTP_ERROR:
-				g = "HTTP Error (" + h + ")";
-				break;
-			case SWFUpload.UPLOAD_ERROR.MISSING_UPLOAD_URL:
-				g = L.u_lack_upload_path;
-				break;
-			case SWFUpload.UPLOAD_ERROR.IO_ERROR:
-				g = L.u_io_warning;
-				break;
-			case SWFUpload.UPLOAD_ERROR.SECURITY_ERROR:
-				g = L.u_security_error;
-				break;
-			/*
-			 * case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
-			 * showDialog("The upload limit has been reached (" + h +
-			 * ").",'alert',"warnings"); g = "Exceeds Upload Limit"; break;
-			 */
-			case SWFUpload.UPLOAD_ERROR.UPLOAD_FAILED:
-				g = L.u_failed;
-				break;
-			case SWFUpload.UPLOAD_ERROR.SPECIFIED_FILE_ID_NOT_FOUND:
-				break;
-			case SWFUpload.UPLOAD_ERROR.FILE_VALIDATION_FAILED:
-				g = L.u_sign_error;
-				break;
-			case SWFUpload.UPLOAD_ERROR.FILE_CANCELLED:
-				g = L.u_canceled;
-				this.queueData.queueSize -= e.size;
-				if (e.status == SWFUpload.FILE_STATUS.IN_PROGRESS
-						|| c.inArray(e.id, this.queueData.uploadQueue) >= 0) {
-					this.queueData.uploadSize -= e.size;
-				}
-				if (f.onCancel) {
-					f.onCancel.call(this, e);
-				}
-				delete this.queueData.files[e.id];
-				break;
-			case SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED:
-				g = L.u_stoped;
-				break;
-			}
-			if (c.inArray("onUploadError", f.overrideEvents) < 0) {
-				e ? '' : e = {};
-				if (i != SWFUpload.UPLOAD_ERROR.FILE_CANCELLED
-						&& i != SWFUpload.UPLOAD_ERROR.UPLOAD_STOPPED) {
-					c("#" + e.id).addClass("uploadify-error");
-				}
-				c("#" + e.id).find(".uploadify-progress-bar").css("width",
-						"1px");
-				if (i != SWFUpload.UPLOAD_ERROR.SPECIFIED_FILE_ID_NOT_FOUND
-						&& e.status != SWFUpload.FILE_STATUS.COMPLETE) {
-					c("#" + e.id).find(".data").html(" - " + g);
-				}
-			}
-			var d = this.getStats();
-			this.queueData.uploadsErrored = d.upload_errors;
-			if (f.onUploadError) {
-				f.onUploadError.call(this, e, i, h, g);
-			}
-		},
-		onUploadProgress : function(g, m, j) {
-			var h = this.settings;
-			var e = new Date();
-			var n = e.getTime();
-			var k = n - this.timer;
-			if (k > 500) {
-				this.timer = n;
-			}
-			var i = m - this.bytesLoaded;
-			this.bytesLoaded = m;
-			var d = this.queueData.queueBytesUploaded + m;
+<link href="tpl/css/admin_management.css" rel="stylesheet" type="text/css" />
+<link href="./resource/css/buttons.css" rel="stylesheet" type="text/css" />
+<link title="style1" href="tpl/skin/default/style.css" rel="stylesheet" type="text/css" />
+<!--<link title="style2" href="tpl/skin/light/style.css" rel="stylesheet" type="text/css" />-->
+<script type="text/javascript" src="./resource/js/jquery.js"></script>
+<script type="text/javascript" src="./resource/js/system/keke.js"></script>
+<script type="text/javascript" src="./resource/js/in.js"></script>
+</head>
+<body class="frame_body">
+<div class="frame_content">
+<div id="append_parent"></div>
+<style type="text/css">
+.jia {background: url(tpl/img/plus.gif)}
+.jian {background: url(tpl/img/minus.gif) }
+</style>
+<div class="page_title">
+    	<h1>分类管理</h1>
+        <div class="tool">
+            <a href="index.php?do=article&view=cat_list&type=art" class="here">分类管理</a>
+          <a href="index.php?do=article&view=cat_edit&type=art"  >分类添加</a>           
+</div>
+</div>
 
-			var p = Math.round(m / j * 100);
-			var o = "KB/s";
-			var l = 0;
-			var f = (i / 1024) / (k / 1000);
-			f = Math.floor(f * 10) / 10;
-			if (this.queueData.averageSpeed > 0) {
-				this.queueData.averageSpeed = Math
-						.floor((this.queueData.averageSpeed + f) / 2);
-			} else {
-				this.queueData.averageSpeed = Math.floor(f);
-			}
-			if (f > 1000) {
-				l = (f * 0.001);
-				this.queueData.averageSpeed = Math.floor(l);
-				o = "MB/s";
-			}
-			if (c.inArray("onUploadProgress", h.overrideEvents) < 0) {
-				if (h.progressData == "percentage") {
-					c("#" + g.id).find(".data").html(" - " + p + "%");
-				} else {
-					if (h.progressData == "speed" && k > 500) {
-						c("#" + g.id).find(".data").html(
-								" - " + this.queueData.averageSpeed + o);
-					}
-				}
-				c("#" + g.id).find(".uploadify-progress-bar").css("width",
-						p + "%");
-			}
-			if (h.onUploadProgress) {
-				h.onUploadProgress.call(this, g, m, j, d,
-						this.queueData.uploadSize);
-			}
-		},
-		onUploadStart : function(d) {
-			var e = this.settings;
-			var f = new Date();
-			this.timer = f.getTime();
-			this.bytesLoaded = 0;
-			if (this.queueData.uploadQueue.length == 0) {
-				this.queueData.uploadSize = d.size;
-			}
-			if (e.checkExisting) {
+<div class="box tip clearfix p_relative" id="man_tips">
+   <div class="control"><a href="javascript:void(0);" title=关闭 onclick="$('#man_tips').fadeOut();"><b>&times;</b></a></div>
+   <div class="title"><h2>小提示</h2></div>
+   <div class="detail pad10">
+      <ul>
+         <li>*本站默认模版风格中文章二级分类无效</li>
+      </ul>
+   </div>
+</div>
+
+
+<div class="box search p_relative">
+    	<div class="title"><h2>搜索</h2></div>
+        <div class="detail" id="detail">
+           
+    <form action="" method="get">
+            	<input type="hidden" name="do" value="article">
+<input type="hidden" name="view" value="cat_list">
+<input type="hidden" name="type" value="art">
+<input type="hidden" name="page" value="">
+ 
+                <table cellspacing="0" cellpadding="0">
+<tbody>
+                        <tr>
+                            <th>所属分类</th>
+                            <td>
+                            	<select   name="w[art_cat_pid]" id="catid">
+                            	<option value=1>客客资讯</option><option value=358>&nbsp;&nbsp;&nbsp; |-新闻列表</option><option value=203>&nbsp;&nbsp;&nbsp; |-安全交易</option><option value=202>&nbsp;&nbsp;&nbsp; |-关于我们</option><option value=17>&nbsp;&nbsp;&nbsp; |-网站公告</option><option value=7>&nbsp;&nbsp;&nbsp; |-媒体报导</option><option value=5>&nbsp;&nbsp;&nbsp; |-行业动态</option><option value=4>&nbsp;&nbsp;&nbsp; |-政策法规</option><option value=2>&nbsp;&nbsp;&nbsp; |-联系我们</option></select>
+(父分类)
+                            </td>
+                            <th>分类名字</th>
+                            <td><input type="text" value="" name="w[cat_name]" class="txt"/>*支持模糊查询</td>
+                             <td></td> 
+</tr>
+                        <tr >
+                            
+<th>结果排序</th>
+<td>
+
+<select name="ord[]">
+                                <option value="art_cat_id"  selected="selected">默认排序</option>
+                                <option value="on_time" >添加时间</option>
+                                </select>
+                                <select name="ord[]">
+                                <option selected="selected"  value="desc">递减</option>
+                                <option  value="asc">递增</option>
+                                </select>
+<button class="pill" type="submit" value=搜索 name="sbt_search">
+                            		<span class="icon magnifier">&nbsp;</span>搜索</button>
+</td>
+                             
+                            <td colspan="3"> 
+                              	&nbsp;
+</td>
+  
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+    </div>
+    <!--搜索结束-->
+<div class="box list">
+    	<div class="title"><h2>分类列表</h2></div>
+        <div class="detail">
+        	<form action="" id='frm_list' method="post">
+              <table cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                 <!--   <th width="8%">ID</th>-->
+                    <th width="7%">显示顺序</th>
+                    <th width="30%">分类名字</th>                    
+                    <th width="17%"> 修改时间</th>
+                   <th width="13%">操作</th>
+                </tr>
+                
+                 <tbody id="indus_item_l_1" style="display:;">
+                  <tr class="item" align="left">
+                  <!--	<td>1</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_1" value="10" onblur="edit_listorder(1,this.value)"></td>
+                    <td align="left">
+                    	<span class="jia" 
+onclick="if($(this).attr('class')=='jia'){
+showids_1('show');
+$(this).attr('class','jian');
+}else{showids_1('hide');
+$(this).attr('class','jia')}
+" >&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_1"
+ style="font-weight:900;font-size:16px;">
+                            <input type="text" class="txt" value="客客资讯" 
+readonly="readonly" >
+</span>
+<a href="javascript:;" style="color:#ff6600" onclick="addchild(1,'')">增加子类</a>					
+</td>                                
+                    <td>2011-12-27 17:39:05</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=1&art_cat_pid=0&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_2" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>2</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_2" value="2" onblur="edit_listorder(2,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_2"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="联系我们" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2011-12-16 17:08:59</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=2&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=2&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_4" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>4</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_4" value="1" onblur="edit_listorder(4,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_4"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="政策法规" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2010-05-17 17:44:57</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=4&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=4&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_5" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>5</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_5" value="1" onblur="edit_listorder(5,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_5"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="行业动态" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2010-05-17 21:06:46</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=5&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=5&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_7" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>7</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_7" value="1" onblur="edit_listorder(7,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_7"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="媒体报导" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2010-05-17 21:07:27</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=7&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=7&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_17" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>17</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_17" value="0" onblur="edit_listorder(17,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jia" 
+onclick="if($(this).attr('class')=='jia'){
+showids_17('show');
+$(this).attr('class','jian');
+}else{showids_17('hide');
+$(this).attr('class','jia')}
+" >&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_17"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="网站公告" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2010-07-05 17:53:25</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=17&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=17&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_360" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>360</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_360" value="1" onblur="edit_listorder(360,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp;&nbsp; |--<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_360"
+ style="font-weight:300;font-size:12px;">
+                            <input type="text" class="txt" value="你好吗" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2012-09-07 10:38:36</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=360&art_cat_pid=17&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=360&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_202" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>202</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_202" value="1" onblur="edit_listorder(202,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_202"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="关于我们" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2011-12-27 10:20:44</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=202&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=202&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_203" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>203</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_203" value="0" onblur="edit_listorder(203,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jia" 
+onclick="if($(this).attr('class')=='jia'){
+showids_203('show');
+$(this).attr('class','jian');
+}else{showids_203('hide');
+$(this).attr('class','jia')}
+" >&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_203"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="安全交易" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2010-12-18 15:54:41</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=203&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=203&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_359" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>359</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_359" value="1" onblur="edit_listorder(359,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp;&nbsp; |--<span class="jia" 
+onclick="if($(this).attr('class')=='jia'){
+showids_359('show');
+$(this).attr('class','jian');
+}else{showids_359('hide');
+$(this).attr('class','jia')}
+" >&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_359"
+ style="font-weight:300;font-size:12px;">
+                            <input type="text" class="txt" value="111111111" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2012-09-06 17:51:52</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=359&art_cat_pid=203&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=359&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_365" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>365</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_365" value="1" onblur="edit_listorder(365,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |---<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_365"
+ style="font-weight:0;font-size:10px;">
+                            <input type="text" class="txt" value="rrrrrr" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2012-09-07 11:35:58</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=365&art_cat_pid=359&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=365&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_361" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>361</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_361" value="1" onblur="edit_listorder(361,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp;&nbsp; |--<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_361"
+ style="font-weight:300;font-size:12px;">
+                            <input type="text" class="txt" value="ffffff" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2012-09-07 10:42:10</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=361&art_cat_pid=203&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=361&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_358" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>358</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_358" value="1" onblur="edit_listorder(358,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp; |-<span class="jia" 
+onclick="if($(this).attr('class')=='jia'){
+showids_358('show');
+$(this).attr('class','jian');
+}else{showids_358('hide');
+$(this).attr('class','jia')}
+" >&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_358"
+ style="font-weight:600;font-size:14px;">
+                            <input type="text" class="txt" value="新闻列表" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2011-12-19 11:08:10</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=358&art_cat_pid=1&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=358&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                   <tbody id="indus_item_l_363" style="display:none;">
+                  <tr class="item" align="left">
+                  <!--	<td>363</td>-->
+                    <td class="td28">
+                    	<input type="text" size=3 class="txt" name="indus_item_listorder_363" value="1" onblur="edit_listorder(363,this.value)"></td>
+                    <td align="left">
+                    	&nbsp;&nbsp;&nbsp;&nbsp; |--<span class="jian" 
+>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <span id="indus_item_span_363"
+ style="font-weight:300;font-size:12px;">
+                            <input type="text" class="txt" value="2222" 
+readonly="readonly" >
+</span>
+</td>                                
+                    <td>2012-09-07 11:05:52</td>
+                    <td>
+<a href="index.php?do=article&view=cat_edit&art_cat_id=363&art_cat_pid=358&type=art" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+<a href="index.php?do=article&view=cat_list&type=art&w[art_cat_pid]=&w[cat_name]=
+		&=&art_cat_id=363&ac=del"  onclick="return cdel(this);" class="button"><span class="trash icon"></span>删除</a>
+
+</td>
+                  </tr>
+  </tbody>
+                                 <tr>
+               	<td>&nbsp;</td>
+                    <td colspan="6">
+                   
+                    
+                    <div class="clearfix">
+                  		<div class="clearfix">	
+                      <!--  <a href="index.php?do=task&view=union_industry"   class="button pill negative"><span class="icon cog">&nbsp;</span></a>-->
+<button  name="sbt_action" type="submit" value=提交 class="positive primary pill button" /><span class="check icon"></span>提交</button>
+                    </div>
+                    </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+   	</form>
+        </div>       
+    </div>
+<script type="text/javascript">
+
+    	function edit_listorder(iid,v){
+    		$.get('index.php?do=article&view=cat_list&ac=editlistorder',{iid:iid,val:v});
+    	}
+    	
+    	var newindus_c = 0;
+    	function addchild(pid,ext){
+    		newindus_c++;
+    		if(ext=='')
+    		{ext = '|';}
+    		if(ext!=' ')
+    		{ext = '&nbsp;&nbsp;&nbsp;'+ext+'---';}
+    		var mod = '<tr class="item" id="newindus_c_'+newindus_c+'">';
+    		  	mod+='<td class="td28">'+'<input type=text size=3 class="txt" name="add_cat_name_listarr['+pid+']['+newindus_c+']" size=3>';+'</td>';
+    		  	mod+='<td>'+ext;
+    			mod+='<input type=text class="txt" name="add_cat_name_arr['+pid+']['+newindus_c+']">';
+    			mod+='</td>';
+    		   
+    	 
+    		    mod+='<td>&nbsp;</td>';
+    			mod+='<td>';
+    			mod+='<a href="javascript:;" onclick="$(\'#newindus_c_'+newindus_c+'\').remove()">';
+    			mod+='删除';
+    			mod+='</a>';
+    			mod+='</td>';
+    		  	mod+='</tr>	';
+    			
+    			$('#indus_item_l_'+pid).append(mod); 
+    		
+    	}
+    	
+             	function showids_1(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_203').show();
+    			    			$('#indus_item_l_17').show();
+    			    			$('#indus_item_l_358').show();
+    			    			$('#indus_item_l_4').show();
+    			    			$('#indus_item_l_202').show();
+    			    			$('#indus_item_l_7').show();
+    			    			$('#indus_item_l_5').show();
+    			    			$('#indus_item_l_2').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_203').hide();
+    			    			$('#indus_item_l_17').hide();
+    			    			$('#indus_item_l_358').hide();
+    			    			$('#indus_item_l_4').hide();
+    			    			$('#indus_item_l_202').hide();
+    			    			$('#indus_item_l_7').hide();
+    			    			$('#indus_item_l_5').hide();
+    			    			$('#indus_item_l_2').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_291(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_325').show();
+    			    			$('#indus_item_l_323').show();
+    			    			$('#indus_item_l_324').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_325').hide();
+    			    			$('#indus_item_l_323').hide();
+    			    			$('#indus_item_l_324').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_100(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_291').show();
+    			    			$('#indus_item_l_294').show();
+    			    			$('#indus_item_l_290').show();
+    			    			$('#indus_item_l_293').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_291').hide();
+    			    			$('#indus_item_l_294').hide();
+    			    			$('#indus_item_l_290').hide();
+    			    			$('#indus_item_l_293').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_203(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_361').show();
+    			    			$('#indus_item_l_359').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_361').hide();
+    			    			$('#indus_item_l_359').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_298(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_362').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_362').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_358(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_363').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_363').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_294(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_346').show();
+    			    			$('#indus_item_l_297').show();
+    			    			$('#indus_item_l_311').show();
+    			    			$('#indus_item_l_312').show();
+    			    			$('#indus_item_l_296').show();
+    			    			$('#indus_item_l_298').show();
+    			    			$('#indus_item_l_347').show();
+    			    			$('#indus_item_l_310').show();
+    			    			$('#indus_item_l_327').show();
+    			    			$('#indus_item_l_345').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_346').hide();
+    			    			$('#indus_item_l_297').hide();
+    			    			$('#indus_item_l_311').hide();
+    			    			$('#indus_item_l_312').hide();
+    			    			$('#indus_item_l_296').hide();
+    			    			$('#indus_item_l_298').hide();
+    			    			$('#indus_item_l_347').hide();
+    			    			$('#indus_item_l_310').hide();
+    			    			$('#indus_item_l_327').hide();
+    			    			$('#indus_item_l_345').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_292(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_315').show();
+    			    			$('#indus_item_l_318').show();
+    			    			$('#indus_item_l_317').show();
+    			    			$('#indus_item_l_316').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_315').hide();
+    			    			$('#indus_item_l_318').hide();
+    			    			$('#indus_item_l_317').hide();
+    			    			$('#indus_item_l_316').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_17(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_360').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_360').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_271(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_322').show();
+    			    			$('#indus_item_l_321').show();
+    			    			$('#indus_item_l_320').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_322').hide();
+    			    			$('#indus_item_l_321').hide();
+    			    			$('#indus_item_l_320').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_293(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_319').show();
+    			    			$('#indus_item_l_326').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_319').hide();
+    			    			$('#indus_item_l_326').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_345(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_364').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_364').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_290(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_329').show();
+    			    			$('#indus_item_l_328').show();
+    			    			$('#indus_item_l_300').show();
+    			    			$('#indus_item_l_301').show();
+    			    			$('#indus_item_l_302').show();
+    			    			$('#indus_item_l_303').show();
+    			    			$('#indus_item_l_304').show();
+    			    			$('#indus_item_l_305').show();
+    			    			$('#indus_item_l_306').show();
+    			    			$('#indus_item_l_307').show();
+    			    			$('#indus_item_l_308').show();
+    			    			$('#indus_item_l_309').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_329').hide();
+    			    			$('#indus_item_l_328').hide();
+    			    			$('#indus_item_l_300').hide();
+    			    			$('#indus_item_l_301').hide();
+    			    			$('#indus_item_l_302').hide();
+    			    			$('#indus_item_l_303').hide();
+    			    			$('#indus_item_l_304').hide();
+    			    			$('#indus_item_l_305').hide();
+    			    			$('#indus_item_l_306').hide();
+    			    			$('#indus_item_l_307').hide();
+    			    			$('#indus_item_l_308').hide();
+    			    			$('#indus_item_l_309').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_359(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_365').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_365').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_0(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_100').show();
+    			    			$('#indus_item_l_1').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_100').hide();
+    			    			$('#indus_item_l_1').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      	function showids_289(op){
+    		if(op=='show'){
+    			    			$('#indus_item_l_295').show();
+    			    		}
+    		else{
+    			    			$('#indus_item_l_295').hide();
+    			    		}
+    		
+    		    		
+    	}
+    	      
+</script>	
+</div>
+<script type="text/javascript"
+src="./resource/js/artdialog/artDialog.js"></script>
+<script type="text/javascript"
+src="./resource/js/artdialog/jquery.artDialog.js?skin=default"></script>
+<script type="text/javascript"
+src="./resource/js/artdialog/artDialog.iframeTools.source.js"></script>
+<script type="text/javascript" src="./lang/cn/script/lang.js"></script>
+<script type="text/javascript">
+In.add('form_and_validation', {
+path : "./resource/js/system/form_and_validation.js",
+type : 'js'
+});
+In.add('xheditor', {
+path : "./resource/js/xheditor/xheditor.js",
+type : 'js'
+});
+In.add('mousewheel', {
+path : "tpl/js/jquery.mousewheel.min.js",
+type : 'js'
+});
+//In.add('styleswitch',{path:"tpl/js/styleswitch.js",type:'js'});
+In.add('table', {
+path : "tpl/js/table.js",
+type : 'js'
+});
+In.add('calendar', {
+path : "./resource/js/system/script_calendar.js"
+});
+In('form_and_validation', 'xheditor', 'mousewheel', 'table', 'calendar');
+</script>
+
+<script type="text/javascript">
+function cdel(o, s) {
+d = art.dialog;
+var c = "你确认删除操作？";
+if (s) {
+c = s;
+}
+d.confirm(c, function() {
+window.location.href = o.href;
+});
+return false;
+}
+function cpass(o, s, type) {
+d = art.dialog;
+if (type == 1) {
+var c = "确认审核通过？";
+} else {
+var c = "确认审核失败？";
+}
+if (s) {
+c = s;
+}
+d.confirm(c, function() {
+window.location.href = o.href;
+});
+return false;
+}
+function cfreeze(o, s, type) {
+d = art.dialog;
+if (type == 1) {
+var c = "确认冻结？";
+}
+if (s) {
+c = s;
+}
+d.confirm(c, function() {
+window.location.href = o.href;
+});
+return false;
+}
+function crecomm(o, s, type) {
+d = art.dialog;
+if (type == 1) {
+var c = "确认推荐？";
+} else {
+var c = "确认取消推荐？";
+}
+if (s) {
+c = s;
+}
+d.confirm(c, function() {
+window.location.href = o.href;
+});
+return false;
+}
+function pdel(frm) {
+d = art.dialog;
+var frm = frm;
+var c = "你确认删除操作？";
+d.confirm(c, function() {
+$("#" + frm).submit();
+});
+return false;
+}
+function batch_act(obj, frm) {
+d = art.dialog;
+var frm = frm;
+var c = $(obj).val();
+var conf = $(":checkbox[name='ckb[]']:checked").length;
+if (conf > 0) {
+d.confirm("确定" + c + '?', function() {
+$(".sbt_action").val(c);
+$("#" + frm).submit();
+});
+} else {
+d.alert("您没有选择任何操作项");
+}
+return false;
+}
+</script>
+</body>
+</html>
