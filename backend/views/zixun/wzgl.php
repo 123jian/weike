@@ -82,11 +82,11 @@
 			
         	<tr>
         		<th width="8%">ID</th>
-           		<th width="25%">作品名称</th>
+           		<th width="20%">作品名称</th>
            		<th width="10%">报价(元) / 单位</th>
 				<th width="8%">店主</th>     
 				<th width="10%">作品状态</th>				
-                <th width="17%">操作</th>
+                <th width="23%">操作</th>
             </tr>
 		<?php foreach($info as $vv){?>
                  <tr class="item">
