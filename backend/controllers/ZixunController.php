@@ -173,7 +173,7 @@ class ZixunController extends Controller{
     // echo $id;die;
             $row=KppwCommodity::deleteAll("commodity_id in $id");
             if($row){
-           echo "<script>alert('删除成功！');location.href='index.php?r=zixun/wzgl';</script>";
+           echo "<script>alert('删除成功！');history.go(-1);</script>";
             }else{
                 echo "<script>alert('删除失败！');history.go(-1);</script>";  
             }
