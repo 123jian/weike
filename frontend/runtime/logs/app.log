@@ -19095,3 +19095,503 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1418557022.487
     'REQUEST_TIME' => 1418557022
 ]
+2014-12-14 13:15:24 [127.0.0.1][][350iicraifsvbivov5cab9sb21][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\cc\advanced2\vendor\yiisoft\yii2\web\Controller.php:110
+Stack trace:
+#0 D:\cc\advanced2\vendor\yiisoft\yii2\base\Controller.php(149): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\cc\advanced2\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('', Array)
+#2 D:\cc\advanced2\vendor\yiisoft\yii2\web\Application.php(83): yii\base\Module->runAction('', Array)
+#3 D:\cc\advanced2\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\cc\advanced2\frontend\web\index.php(20): yii\base\Application->run()
+#5 {main}
+2014-12-14 13:15:24 [127.0.0.1][][350iicraifsvbivov5cab9sb21][info][application] $_GET = [
+    'do' => 'register'
+    'check_username' => 'admin'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://www.zhuji.com'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://www.zhuji.com/advanced2/frontend/web/index.php?r=register'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '51562'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'do=register&check_username=admin'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?do=register&check_username=admin'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418559324.227
+    'REQUEST_TIME' => 1418559324
+]
+2014-12-14 13:16:17 [127.0.0.1][][350iicraifsvbivov5cab9sb21][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\cc\advanced2\vendor\yiisoft\yii2\web\Controller.php:110
+Stack trace:
+#0 D:\cc\advanced2\vendor\yiisoft\yii2\base\Controller.php(149): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\cc\advanced2\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('', Array)
+#2 D:\cc\advanced2\vendor\yiisoft\yii2\web\Application.php(83): yii\base\Module->runAction('', Array)
+#3 D:\cc\advanced2\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\cc\advanced2\frontend\web\index.php(20): yii\base\Application->run()
+#5 {main}
+2014-12-14 13:16:17 [127.0.0.1][][350iicraifsvbivov5cab9sb21][info][application] $_GET = [
+    'do' => 'register'
+    'check_username' => 'admin'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://www.zhuji.com'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://www.zhuji.com/advanced2/frontend/web/index.php?r=register'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '52024'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'do=register&check_username=admin'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?do=register&check_username=admin'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418559377.513
+    'REQUEST_TIME' => 1418559377
+]
+2014-12-14 13:16:25 [127.0.0.1][][350iicraifsvbivov5cab9sb21][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\cc\advanced2\vendor\yiisoft\yii2\web\Controller.php:110
+Stack trace:
+#0 D:\cc\advanced2\vendor\yiisoft\yii2\base\Controller.php(149): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\cc\advanced2\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('', Array)
+#2 D:\cc\advanced2\vendor\yiisoft\yii2\web\Application.php(83): yii\base\Module->runAction('', Array)
+#3 D:\cc\advanced2\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\cc\advanced2\frontend\web\index.php(20): yii\base\Application->run()
+#5 {main}
+2014-12-14 13:16:25 [127.0.0.1][][350iicraifsvbivov5cab9sb21][info][application] $_GET = [
+    'do' => 'register'
+    'check_username' => 'admin'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://www.zhuji.com'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://www.zhuji.com/advanced2/frontend/web/index.php?r=register'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '52044'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'do=register&check_username=admin'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?do=register&check_username=admin'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418559385.594
+    'REQUEST_TIME' => 1418559385
+]
+2014-12-14 13:16:26 [127.0.0.1][][350iicraifsvbivov5cab9sb21][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\cc\advanced2\vendor\yiisoft\yii2\web\Controller.php:110
+Stack trace:
+#0 D:\cc\advanced2\vendor\yiisoft\yii2\base\Controller.php(149): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\cc\advanced2\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('', Array)
+#2 D:\cc\advanced2\vendor\yiisoft\yii2\web\Application.php(83): yii\base\Module->runAction('', Array)
+#3 D:\cc\advanced2\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\cc\advanced2\frontend\web\index.php(20): yii\base\Application->run()
+#5 {main}
+2014-12-14 13:16:26 [127.0.0.1][][350iicraifsvbivov5cab9sb21][info][application] $_GET = [
+    'do' => 'register'
+    'check_username' => 'admin'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://www.zhuji.com'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://www.zhuji.com/advanced2/frontend/web/index.php?r=register'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '52087'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'do=register&check_username=admin'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?do=register&check_username=admin'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418559386.78
+    'REQUEST_TIME' => 1418559386
+]
+2014-12-14 13:16:30 [127.0.0.1][][350iicraifsvbivov5cab9sb21][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\cc\advanced2\vendor\yiisoft\yii2\web\Controller.php:110
+Stack trace:
+#0 D:\cc\advanced2\vendor\yiisoft\yii2\base\Controller.php(149): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\cc\advanced2\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('', Array)
+#2 D:\cc\advanced2\vendor\yiisoft\yii2\web\Application.php(83): yii\base\Module->runAction('', Array)
+#3 D:\cc\advanced2\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\cc\advanced2\frontend\web\index.php(20): yii\base\Application->run()
+#5 {main}
+2014-12-14 13:16:30 [127.0.0.1][][350iicraifsvbivov5cab9sb21][info][application] $_GET = [
+    'do' => 'register'
+    'check_username' => 'admin'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://www.zhuji.com'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://www.zhuji.com/advanced2/frontend/web/index.php?r=register'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '52106'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => 'do=register&check_username=admin'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?do=register&check_username=admin'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418559390.138
+    'REQUEST_TIME' => 1418559390
+]
+2014-12-14 13:24:54 [127.0.0.1][-][-][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined index: txt_account' in D:\cc\advanced2\frontend\controllers\LoginController.php:18
+Stack trace:
+#0 D:\cc\advanced2\frontend\controllers\LoginController.php(18): yii\base\ErrorHandler->handleError(8, 'Undefined index...', 'D:\cc\advanced2...', 18, Array)
+#1 [internal function]: frontend\controllers\LoginController->actionLogin()
+#2 D:\cc\advanced2\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#3 D:\cc\advanced2\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#4 D:\cc\advanced2\vendor\yiisoft\yii2\base\Module.php(455): yii\base\Controller->runAction('login', Array)
+#5 D:\cc\advanced2\vendor\yiisoft\yii2\web\Application.php(83): yii\base\Module->runAction('login/login', Array)
+#6 D:\cc\advanced2\vendor\yiisoft\yii2\base\Application.php(375): yii\web\Application->handleRequest(Object(yii\web\Request))
+#7 D:\cc\advanced2\frontend\web\index.php(20): yii\base\Application->run()
+#8 {main}
+2014-12-14 13:24:54 [127.0.0.1][-][-][info][application] $_GET = [
+    'r' => 'login/login'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '55275'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=login/login'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?r=login/login'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418559894.856
+    'REQUEST_TIME' => 1418559894
+]
+2014-12-14 14:11:55 [127.0.0.1][-][-][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected 'l' (T_STRING), expecting ',' or ';'' in D:\cc\advanced2\frontend\controllers\LoginController.php:31
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2014-12-14 14:11:55 [127.0.0.1][-][-][info][application] $_GET = [
+    'r' => 'login'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'HTTP_REFERER' => 'http://www.zhuji.com/advanced2/frontend/web/index.php?r=index%2Findex'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '58703'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=login'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?r=login'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418562715.227
+    'REQUEST_TIME' => 1418562715
+]
+2014-12-14 14:12:11 [127.0.0.1][-][-][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected 'l' (T_STRING), expecting ',' or ';'' in D:\cc\advanced2\frontend\controllers\LoginController.php:31
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2014-12-14 14:12:11 [127.0.0.1][-][-][info][application] $_GET = [
+    'r' => 'login/logout'
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '350iicraifsvbivov5cab9sb21'
+]
+
+$_SERVER = [
+    'MIBDIRS' => 'D:/wamp/jicheng/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/wamp/jicheng/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'www.zhuji.com'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+    'HTTP_REFERER' => 'http://www.zhuji.com/advanced2/frontend/web/index.php?r=index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip,deflate,sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=350iicraifsvbivov5cab9sb21'
+    'PATH' => 'D:\\wamp\\jicheng\\PHP\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\web\\mysql\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\bin;C:\\Program Files\\Java\\jdk1.7.0_71\\jre\\bin;C:\\Program Files\\TortoiseGit\\bin;C:\\ProgramData\\ComposerSetup\\bin;D:\\mysql\\mysql-5.7.4-m14-winx64\\bin;'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9 Server at www.zhuji.com Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Win32) OpenSSL/1.0.1e PHP/5.5.9'
+    'SERVER_NAME' => 'www.zhuji.com'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/cc'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/cc'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/cc/advanced2/frontend/web/index.php'
+    'REMOTE_PORT' => '58704'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=login/logout'
+    'REQUEST_URI' => '/advanced2/frontend/web/index.php?r=login/logout'
+    'SCRIPT_NAME' => '/advanced2/frontend/web/index.php'
+    'PHP_SELF' => '/advanced2/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1418562731.364
+    'REQUEST_TIME' => 1418562731
+]

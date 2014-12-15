@@ -431,4 +431,23 @@ class UserguanliController extends Controller{
 	{
 		return $this->renderPartial('rzxm');
 	}
+	//查看访问量
+    public function actionPv()
+	{/**/
+            //$pv = new \app\models\KekeWitkeyPv;
+            $data = \app\models\KekeWitkeyPv::find()->all();
+            //print_r($data);die;
+            $y = "";
+            foreach($data as $key=>$val){
+                $y.=$val['pv_count'].",";
+            }
+            $x="";
+            foreach($data as $key=>$val){
+                $x.="'".$val['pv_time']."',";
+            }
+            $x=trim($x,","); 
+            $y= trim($y,","); 
+//echo $x;echo $y;
+            return $this->renderPartial('pv',['x'=>$x,'y'=>$y]);
+	}
 }

@@ -25,10 +25,13 @@ class LoginController extends \yii\web\Controller
                 $session->set('uid', $pwd['uid']);
                 //$_SESSION['uid']=$pwd['uid'];
                 $session->set('name', $pwd['username']);
-                list($uid, $username, $password, $email) = uc_user_login($_POST['username'], $_POST['password']);
-				if($uid > 0) {
+                list($uid, $username, $password, $email) = uc_user_login($_POST['txt_account'], $_POST['pwd_password']);
+				//echo $uid;die;
+				if($uid>0) {
+					//echo '11111l';die;
 				echo uc_user_synlogin($uid);
-				} 
+				//header("refresh:1;url=http://www.10.com/discuz_x3.2_sc_gbk/upload");  //登录成功，1秒之后跳转。这里需注意，一定要有一个前端页面的跳转，方便用户给ucenter发送登陆成功的信息
+				} //die;
                 echo "<script>location.href='./index.php?r=index'</script>";
             }else{
                 echo "<script>alert('密码错误');location.href='./index.php?r=index'</script>";

@@ -362,6 +362,15 @@ window.onload = function(){
  		                        </ul>
                   </dd>
                 </dl>
+				<dl>
+                  	<dt><i class="arrow_r">&nbsp;</i>查看访问量</dt>
+                  <dd>
+                        <ul >
+                        	<li><a href="index.php?r=userguanli/pv" target="display_frame" r_id="36">查看</a></li>
+
+ 		                        </ul>
+                  </dd>
+                </dl>
       		<dl>
                   	<dt><i class="arrow_r">&nbsp;</i>用户反馈</dt>
                   <dd>
