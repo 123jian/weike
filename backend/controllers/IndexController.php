@@ -55,5 +55,45 @@ class IndexController extends Controller{
 	public function actionCenter(){
 		return $this->renderPartial('center');
 	}
+
+	//认证项目
+	public function actionRzxm()
+	{
+		//$this->layout='@app/views/layouts/admin.php';
+		$this->layout='@app/views/layouts/admin.php';	
+		$data = KppwCommodity::find();
+		$pages =new Pagination(['totalCount'=>$data->count(),'pageSize'=>'4']);
+		$model = $data->offset($pages->offset)->limit($pages->limit)->all();
+		return $this->render('rzxm',['model'=>$model,
+			'pages'=>$pages,
+
+			]);
+	}
+
+	//禁用
+	public function actionUpd(){
+		//$connection=Yii::app()->db;
+		$id = $_GET['id'];
+		//echo $id;
+		$sql="update kppw_commodity set c_state=3 where commodity_id = $id";
+		//$rowsa=$connection->createCommand($sql)->execute();
+		if($sql){
+			echo"<script>alert('禁用成功');location.href='index.php?r=index/rzxm'</script>";
+		}else{
+			echo"<script>alert('已禁用');location.href='index.php?r=index/rzxm'</script>";
+		}
+	}
+
+
+	//删除
+	public function actionShanc($id)
+	{
+		$data= KppwCommodity::findOne($id);
+		$data->delete();
+		if($data)
+		{
+			 $this->redirect(array('rzxm'));
+		}
+	}
 }
 ?>
