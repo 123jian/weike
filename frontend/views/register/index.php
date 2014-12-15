@@ -1,4 +1,5 @@
 <?php
+header('Content-type: text/html; charset=utf-8');
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
