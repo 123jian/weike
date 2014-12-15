@@ -11,19 +11,19 @@ use yii\captcha\Captcha;
         		<div class="inner">
             		<header class="box_header clearfix ">
             			<div class="grid_5 alpha omega">
-            				<h1 class="box_title"><span>×¢ ²á</span> Register</h1>
+            				<h1 class="box_title"><span>æ³¨ å†Œ</span> Register</h1>
 </div>
 <div class="grid_18">
 <nav class="box_nav clearfix">
 <ul> 
-                					<li><a href="index.php?do=login&ac_type=reg">ÓÐÕËºÅ£¿ÏÖÔÚÈ¥µÇÂ¼</a></li>
+                					<li><a href="index.php?do=login&ac_type=reg">æœ‰è´¦å·ï¼ŸçŽ°åœ¨åŽ»ç™»å½•</a></li>
 </ul>
 </nav>
 </div>
 </header>
         			<div class=" box_detail clearfix po_re box pt_10 pl_5">
             			<div class="grid_17">
-                		<!--from±íµ¥ start-->
+                		<!--fromè¡¨å• start-->
                 		<div class="form_box clearfix border_n">
 		
 <?php $form  = ActiveForm::begin([
@@ -35,73 +35,73 @@ use yii\captcha\Captcha;
 								
                         			<input type="hidden" name="formhash" id="formhash" value="ce9abd">
                         			<input type="hidden" name="hdn_refer" id="hdn_refer" value="index.php">
-<input type="hidden" name="handlekey" value="register_frm1"><!--ÕËºÅ-->
+<input type="hidden" name="handlekey" value="register_frm1"><!--è´¦å·-->
                         			<div class="rowElem clearfix po_re">
                             			<label class="grid_4">
-                                			ÕË¡¡¡¡ ºÅ£º                            			</label>
+                                			è´¦ã€€ã€€ å·ï¼š                            			</label>
                             			<div class="fl_l ">
-                                			<input type="text" class="txt txt_input" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20;type:string;general:true" msg="ÓÃ»§ÃûÊäÈëÓÐÎó£¡" ajax="index.php?do=register&check_username=" title="2-20¸ö×Ö·û»òÕßºº×Ö£¬ÍÆ¼öÊ¹ÓÃÖÐÎÄ»áÔ±Ãû¡£" msgArea="login_account_msg" style="width:200px;" />
+                                			<input type="text" class="txt txt_input" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20;type:string;general:true" msg="ç”¨æˆ·åè¾“å…¥æœ‰è¯¯ï¼" ajax="index.php?do=register&check_username=" title="2-20ä¸ªå­—ç¬¦æˆ–è€…æ±‰å­—ï¼ŒæŽ¨èä½¿ç”¨ä¸­æ–‡ä¼šå‘˜åã€‚" msgArea="login_account_msg" style="width:200px;" />
                             				<span class="msg" id="login_account_msg"><i></i></span>
 </div>
 
                         			</div>
 
-                        		<!--end ÕËºÅ--><!--ÃÜÂë-->
+                        		<!--end è´¦å·--><!--å¯†ç -->
                         			<div class="rowElem clearfix po_re">
                             			<label class="grid_4">
-                                			ÃÜ¡¡ ¡¡Âë£º                            			</label>
+                                			å¯†ã€€ ã€€ç ï¼š                            			</label>
                             			<div class="fl_l  ">
-                                			<input class="txt_input" onKeyup="pwStrength(this.value)" style="width:200px;" type="password" name="pwd_password" id="pwd_password" maxlength="20" limit="required:true;len:6-20" msg="ÃÜÂëÊäÈëÓÐÎó£¡" title="6-20¸ö×Ö·û£¬ÇëÊ¹ÓÃ×ÖÄ¸¼ÓÊý×Ö»ò·ûºÅµÄ×éºÏÃÜÂë" msgArea="password_msg"/>
+                                			<input class="txt_input" onKeyup="pwStrength(this.value)" style="width:200px;" type="password" name="pwd_password" id="pwd_password" maxlength="20" limit="required:true;len:6-20" msg="å¯†ç è¾“å…¥æœ‰è¯¯ï¼" title="6-20ä¸ªå­—ç¬¦ï¼Œè¯·ä½¿ç”¨å­—æ¯åŠ æ•°å­—æˆ–ç¬¦å·çš„ç»„åˆå¯†ç " msgArea="password_msg"/>
                             				<span class="msg" id="password_msg"></span>
 </div>
 
                         			<div class="clear"></div>
-<!--ÃÜÂëÇ¿¶È-->
+<!--å¯†ç å¼ºåº¦-->
 
 <div class="prefix_4">
                             		 	<div id="pwdStrength" class=" msg pw_strength">
                                 		<div class="pw_letter">
-                                			<span class="selected">Èõ</span>
-<span>ÖÐ</span>
-<span>Ç¿</span>
+                                			<span class="selected">å¼±</span>
+<span>ä¸­</span>
+<span>å¼º</span>
 </div>
                            			 	</div>
 
 </div>
                         			</div>
-<!--Ç¿¶Èend-->
+<!--å¼ºåº¦end-->
                         			<div class="rowElem clearfix po_re">
                             			<label class="grid_4">
-                                			È·ÈÏ ÃÜÂë£º                            			</label>
+                                			ç¡®è®¤ å¯†ç ï¼š                            			</label>
                             			<div class="fl_l">
-                                			<input class="txt_input" style="width:200px;" type="password" name="pwd_password2" id="pwd_password2" maxlength="20" limit="required:true;equals:pwd_password" msg="ÖØ¸´ÃÜÂë²»ÕýÈ·£¡" title="ÔÙÊäÒ»´ÎÃÜÂë" msgArea="password2_msg"/>
+                                			<input class="txt_input" style="width:200px;" type="password" name="pwd_password2" id="pwd_password2" maxlength="20" limit="required:true;equals:pwd_password" msg="é‡å¤å¯†ç ä¸æ­£ç¡®ï¼" title="å†è¾“ä¸€æ¬¡å¯†ç " msgArea="password2_msg"/>
                             				<span class="msg" id="password2_msg"></span>
 </div>
 
                         			</div> 
-                        		<!--end ÃÜÂë-->
-<!--ÓÊÏä-->
+                        		<!--end å¯†ç -->
+<!--é‚®ç®±-->
                         			<div class="rowElem clearfix po_re">
                             			<label class="grid_4">
-                                			ÓÊ¡¡ ¡¡Ïä£º                            			</label>
+                                			é‚®ã€€ ã€€ç®±ï¼š                            			</label>
                             			<div class="fl_l">
-                                			<input class="txt_input" style="width:200px;" autocomplete="off" type="text" class="txt" name="txt_email" id="txt_email"limit="type:email;required:true;len:6-50" msg="ÇëÊäÈëÄúÕæÊµµÄÓÊÏäµØÖ·£¡" title="ÇëÊäÈëÄú³£ÓÃµÄÓÊÏä" ajax="index.php?do=register&check_email=" msgArea="email_msg"/>
+                                			<input class="txt_input" style="width:200px;" autocomplete="off" type="text" class="txt" name="txt_email" id="txt_email"limit="type:email;required:true;len:6-50" msg="è¯·è¾“å…¥æ‚¨çœŸå®žçš„é‚®ç®±åœ°å€ï¼" title="è¯·è¾“å…¥æ‚¨å¸¸ç”¨çš„é‚®ç®±" ajax="index.php?do=register&check_email=" msgArea="email_msg"/>
                             				<span class="" id="email_msg"></span>
 </div>
 
                         			</div>
-                        	<!--end ÓÊÏä-->					
+                        	<!--end é‚®ç®±-->					
 
-<!--ÑéÖ¤Âë-->
+<!--éªŒè¯ç -->
                         			<div class="rowElem clearfix po_re">
                             			<label class="grid_4">
-                                			Ñé &nbsp;&nbsp;Ö¤&nbsp;&nbsp;Âë£º
-<!--ÑéÖ¤Âë-->
+                                			éªŒ &nbsp;&nbsp;è¯&nbsp;&nbsp;ç ï¼š
+<!--éªŒè¯ç -->
 
                                                 </label>
                             			<div class="grid_8 alpha omega po_re" >
    <!--  <input style="width:65px;" class="fl_l txt_input" name="txt_code" type="text" 
-size="8" id="txt_code" limit="required:true;len:4" msg="ÑéÖ¤Âë´íÎó!"msgArea="secode_msg"
+size="8" id="txt_code" limit="required:true;len:4" msg="éªŒè¯ç é”™è¯¯!"msgArea="secode_msg"
 ajax="index.php?do=ajax&view=code&txt_code=" >
 
 
@@ -109,7 +109,7 @@ ajax="index.php?do=ajax&view=code&txt_code=" >
 
 			<!--
  				<img id="secode_img" src="secode_show.php?sid=" onclick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">
- 				<a class="font14" href="#" onclick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">»»Ò»×é</a>
+ 				<a class="font14" href="#" onclick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">æ¢ä¸€ç»„</a>
 <span class="" id="secode_msg"></span>
 -->
 
@@ -118,21 +118,21 @@ ajax="index.php?do=ajax&view=code&txt_code=" >
 </div>
                             			
                         			</div>						
-                        	<!--end ÑéÖ¤Âë-->
+                        	<!--end éªŒè¯ç -->
 
                         <div class="mt_20 prefix_4 ml_5">
                             <button type="submit" class="button" onclick="return user_register();">
                                 <span class="clock icon"></span>
-                                ×¢ ²á                            </button>
+                                æ³¨ å†Œ                            </button>
                         </div>
 
                         <p class="mt_20 prefix_4 ml_5">
                             <input  name="inputtext" type="checkbox" checked="checked" id="inputtext" limit="required:true"
-msg="Äú±ØÐëÍ¬Òâ×¢²áÐ­Òé" msgArea="login_msg"/> &nbsp;ÎÒÒÑÔÄ¶Á²¢½ÓÊÜ<a  class="agreement_link" href="" target="_blank">×¢²áÐ­Òé</a>ºÍ°æÈ¨ÉùÃ÷                        	<span id="login_msg"></span>
+msg="æ‚¨å¿…é¡»åŒæ„æ³¨å†Œåè®®" msgArea="login_msg"/> &nbsp;æˆ‘å·²é˜…è¯»å¹¶æŽ¥å—<a  class="agreement_link" href="" target="_blank">æ³¨å†Œåè®®</a>å’Œç‰ˆæƒå£°æ˜Ž                        	<span id="login_msg"></span>
 </p>
                    <?php $form=ActiveForm::end(); ?>
 <div class="agreement_part clearfix" style="display:none;">
-<p>×¢²áÐ­Òé<br /></p>
+<p>æ³¨å†Œåè®®<br /></p>
 </div>
                 </div>
             </div>
@@ -140,40 +140,40 @@ msg="Äú±ØÐëÍ¬Òâ×¢²áÐ­Òé" msgArea="login_msg"/> &nbsp;ÎÒÒÑÔÄ¶Á²¢½ÓÊÜ<a  class="ag
                     <div class="pad10">
 
                      <div class=" pl_20">
-                        <span>Í¨¹ýºÏ×÷ÍøÕ¾Ö±½ÓµÇÂ½KPPW</span>
+                        <span>é€šè¿‡åˆä½œç½‘ç«™ç›´æŽ¥ç™»é™†KPPW</span>
  <div class="mt_10">
-<a href="index.php?do=oauth_login&type=sina" alt="ÐÂÀËÎ¢²©" title="ÐÂÀËÎ¢²©">
-<img src="resource/img/ico/sina_t.gif" alt="ÐÂÀËÎ¢²©" title="ÐÂÀËÎ¢²©">
+<a href="index.php?do=oauth_login&type=sina" alt="æ–°æµªå¾®åš" title="æ–°æµªå¾®åš">
+<img src="resource/img/ico/sina_t.gif" alt="æ–°æµªå¾®åš" title="æ–°æµªå¾®åš">
 </a>
-<a href="index.php?do=oauth_login&type=sina" class="ml_5">ÐÂÀËÎ¢²©µÇÂ¼</a>
+<a href="index.php?do=oauth_login&type=sina" class="ml_5">æ–°æµªå¾®åšç™»å½•</a>
 </div>
                    			
  <div class="mt_10">
-<a href="index.php?do=oauth_login&type=ten" alt="ÌÚÑ¶Î¢²©" title="ÌÚÑ¶Î¢²©">
-<img src="resource/img/ico/ten_t.gif" alt="ÌÚÑ¶Î¢²©" title="ÌÚÑ¶Î¢²©">
+<a href="index.php?do=oauth_login&type=ten" alt="è…¾è®¯å¾®åš" title="è…¾è®¯å¾®åš">
+<img src="resource/img/ico/ten_t.gif" alt="è…¾è®¯å¾®åš" title="è…¾è®¯å¾®åš">
 </a>
-<a href="index.php?do=oauth_login&type=ten" class="ml_5">ÌÚÑ¶Î¢²©µÇÂ¼</a>
+<a href="index.php?do=oauth_login&type=ten" class="ml_5">è…¾è®¯å¾®åšç™»å½•</a>
 </div>
                    			
  <div class="mt_10">
-<a href="index.php?do=oauth_login&type=qq" alt="QQÕËºÅ" title="QQÕËºÅ">
-<img src="resource/img/ico/qq_t.gif" alt="QQÕËºÅ" title="QQÕËºÅ">
+<a href="index.php?do=oauth_login&type=qq" alt="QQè´¦å·" title="QQè´¦å·">
+<img src="resource/img/ico/qq_t.gif" alt="QQè´¦å·" title="QQè´¦å·">
 </a>
-<a href="index.php?do=oauth_login&type=qq" class="ml_5">QQÕËºÅµÇÂ¼</a>
+<a href="index.php?do=oauth_login&type=qq" class="ml_5">QQè´¦å·ç™»å½•</a>
 </div>
                    			
  <div class="mt_10">
-<a href="index.php?do=oauth_login&type=taobao" alt="ÌÔ±¦" title="ÌÔ±¦">
-<img src="resource/img/ico/taobao_t.gif" alt="ÌÔ±¦" title="ÌÔ±¦">
+<a href="index.php?do=oauth_login&type=taobao" alt="æ·˜å®" title="æ·˜å®">
+<img src="resource/img/ico/taobao_t.gif" alt="æ·˜å®" title="æ·˜å®">
 </a>
-<a href="index.php?do=oauth_login&type=taobao" class="ml_5">ÌÔ±¦µÇÂ¼</a>
+<a href="index.php?do=oauth_login&type=taobao" class="ml_5">æ·˜å®ç™»å½•</a>
 </div>
                    			
  <div class="mt_10">
-<a href="index.php?do=oauth_login&type=sohu" alt="ËÑºüÎ¢²©" title="ËÑºüÎ¢²©">
-<img src="resource/img/ico/sohu_t.gif" alt="ËÑºüÎ¢²©" title="ËÑºüÎ¢²©">
+<a href="index.php?do=oauth_login&type=sohu" alt="æœç‹å¾®åš" title="æœç‹å¾®åš">
+<img src="resource/img/ico/sohu_t.gif" alt="æœç‹å¾®åš" title="æœç‹å¾®åš">
 </a>
-<a href="index.php?do=oauth_login&type=sohu" class="ml_5">ËÑºüÎ¢²©µÇÂ¼</a>
+<a href="index.php?do=oauth_login&type=sohu" class="ml_5">æœç‹å¾®åšç™»å½•</a>
 </div>
                    			
                     </div>
@@ -191,7 +191,7 @@ msg="Äú±ØÐëÍ¬Òâ×¢²áÐ­Òé" msgArea="login_msg"/> &nbsp;ÎÒÒÑÔÄ¶Á²¢½ÓÊÜ<a  class="ag
 </div>
 <script type="text/javascript">
    In('form');
-//×¢²á
+//æ³¨å†Œ
 function user_register(){
     var i = checkForm(document.getElementById("register_frm"));
     if (i) {
